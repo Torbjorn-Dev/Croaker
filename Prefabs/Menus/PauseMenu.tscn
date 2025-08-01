@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckiyem341m6nr"]
+
+[ext_resource type="Script" uid="uid://d0l2u2pdkycn8" path="res://Scripts/Menus/GameMenu.cs" id="1_7l5up"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_34bqk"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_bdf0c"]
+font_size = 30
+
+[node name="PauseMenu" type="Control"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7l5up")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -163.0
+offset_top = -88.0
+offset_right = 168.0
+offset_bottom = -19.0
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_34bqk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackToMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = -202.0
+offset_right = 216.0
+offset_bottom = 89.0
+
+[node name="Label" type="Label" parent="BackToMenu"]
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 89.0
+text = "Back To Menu
+"
+label_settings = SubResource("LabelSettings_bdf0c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="BackToMenu" to="." method="BackToMenuButton"]

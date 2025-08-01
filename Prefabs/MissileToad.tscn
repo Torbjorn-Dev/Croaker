@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm40swn3mmib2"]
+
+[ext_resource type="Script" uid="uid://wbfjkq0inre1" path="res://Scripts/MissileToad.cs" id="1_qtagl"]
+[ext_resource type="Texture2D" uid="uid://bjglli7dc7cje" path="res://Sprites/Toad.png" id="2_ha83v"]
+[ext_resource type="PackedScene" uid="uid://xlk63x7g3tjg" path="res://Prefabs/HomingMissile.tscn" id="2_txdqs"]
+[ext_resource type="PackedScene" uid="uid://jj1bftsql82v" path="res://Prefabs/DeathParticles.tscn" id="3_54wu3"]
+[ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="3_txdqs"]
+[ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="4_54wu3"]
+[ext_resource type="PackedScene" uid="uid://d4ehjnyug6v0k" path="res://Prefabs/Killzone.tscn" id="5_hnp0a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fu237"]
+radius = 65.4905
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vclod"]
+size = Vector2(65, 139)
+
+[node name="Missile Toad" type="Node2D" node_paths=PackedStringArray("_fireLocation") groups=["Enemies"]]
+script = ExtResource("1_qtagl")
+_missileScene = ExtResource("2_txdqs")
+_deathParticleScene = ExtResource("3_54wu3")
+_fireLocation = NodePath("FireLocation")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(2.6, 2.6)
+texture = ExtResource("2_ha83v")
+flip_h = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="FireLocation" type="Node2D" parent="."]
+position = Vector2(99, -30)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_txdqs")]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_fu237")
+
+[node name="Health" parent="." instance=ExtResource("4_54wu3")]
+
+[node name="Killzone" parent="." instance=ExtResource("5_hnp0a")]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-4.5, -2.5)
+shape = SubResource("RectangleShape2D_vclod")
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
+[connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
+[connection signal="NoHealth" from="Health" to="." method="Die"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://xlk63x7g3tjg"]
+
+[ext_resource type="Script" uid="uid://qq67gjxldrxd" path="res://Scripts/HomingMissile.cs" id="1_pbtdm"]
+[ext_resource type="PackedScene" uid="uid://guudylg768vv" path="res://Prefabs/Explosion.tscn" id="2_spps4"]
+[ext_resource type="Texture2D" uid="uid://bbdue7m2epb4b" path="res://Sprites/missile.png" id="2_twra5"]
+[ext_resource type="AudioStream" uid="uid://bcqfh4cirnlc0" path="res://Audio/Missile.wav" id="3_spps4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruesw"]
+size = Vector2(63.2036, 27.9481)
+
+[sub_resource type="Curve" id="Curve_bh4g5"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.780899, 1.2967), -2.30123, -2.30123, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="HomingMissile" type="Node2D"]
+top_level = true
+script = ExtResource("1_pbtdm")
+_explosionScene = ExtResource("2_spps4")
+
+[node name="Area2D" type="Area2D" parent="." groups=["missiles"]]
+scale = Vector2(-0.148423, -0.0818575)
+collision_layer = 4
+collision_mask = 28
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.36875, 4.36891e-06)
+scale = Vector2(6.929, 12.239)
+shape = SubResource("RectangleShape2D_ruesw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_twra5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.985
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-17, 0)
+amount = 30
+direction = Vector2(-1, 0)
+spread = 21.36
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_bh4g5")
+color = Color(0.990985, 1, 0.815232, 1)
+
+[node name="MissileSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_spps4")
+autoplay = true
+
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered2D"]
+[connection signal="body_entered" from="Area2D" to="." method="OnCollisionEntered2D"]
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

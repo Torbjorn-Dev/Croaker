@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8mv83vpnqq75"]
+
+[ext_resource type="Script" uid="uid://d0l2u2pdkycn8" path="res://Scripts/Menus/GameMenu.cs" id="1_ilxjp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_34bqk"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_bdf0c"]
+font_size = 30
+
+[node name="WinMenu" type="Control"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ilxjp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -163.0
+offset_top = -86.0
+offset_right = 160.0
+offset_bottom = -17.0
+text = "Level beaten!"
+label_settings = SubResource("LabelSettings_34bqk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextLevelButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -213.0
+offset_right = 205.0
+offset_bottom = 89.0
+
+[node name="Label" type="Label" parent="NextLevelButton"]
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 89.0
+text = "Next level"
+label_settings = SubResource("LabelSettings_bdf0c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackToMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -134.0
+offset_top = 105.0
+offset_right = 284.0
+offset_bottom = 194.0
+scale = Vector2(0.64, 1)
+
+[node name="Label" type="Label" parent="BackToMenuButton"]
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 89.0
+text = "Back to menu
+"
+label_settings = SubResource("LabelSettings_bdf0c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="NextLevelButton" to="." method="NextLevelButton"]
+[connection signal="button_down" from="BackToMenuButton" to="." method="BackToMenuButton"]

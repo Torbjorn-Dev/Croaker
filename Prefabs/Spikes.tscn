@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://del1eqbojg4uh"]
+
+[ext_resource type="Script" uid="uid://cc4bjykr5qm0h" path="res://Scripts/Killzone.cs" id="1_25tb4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fel45"]
+size = Vector2(28, 26)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_30yiy"]
+load_path = "res://.godot/imported/spikes.png-1e39ba846b6c2b2af0495d59400829b8.ctex"
+
+[node name="Spikes" type="Node2D"]
+script = ExtResource("1_25tb4")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_fel45")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_30yiy")
+
+[connection signal="area_entered" from="Area2D" to="." method="OnHitboxEntered2D"]

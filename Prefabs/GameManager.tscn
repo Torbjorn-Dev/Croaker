@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciha4g3kc8fij"]
+
+[ext_resource type="Script" uid="uid://dsreu8pilmr1w" path="res://Scripts/GameManager.cs" id="1_4v1xe"]
+[ext_resource type="PackedScene" uid="uid://b8mv83vpnqq75" path="res://Prefabs/Menus/WinMenu.tscn" id="2_k2p31"]
+[ext_resource type="PackedScene" uid="uid://cw2edx0r1ol28" path="res://Prefabs/Menus/LoseMenu.tscn" id="3_7eqy8"]
+[ext_resource type="PackedScene" uid="uid://ckiyem341m6nr" path="res://Prefabs/Menus/PauseMenu.tscn" id="4_tvdl1"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_4v1xe")
+_winMenuScene = ExtResource("2_k2p31")
+_loseMenuScene = ExtResource("3_7eqy8")
+_pauseMenuScene = ExtResource("4_tvdl1")

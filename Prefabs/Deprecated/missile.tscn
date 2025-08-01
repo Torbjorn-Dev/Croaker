@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://igkn78t76edo"]
+
+[ext_resource type="Script" uid="uid://o4vxn610jne4" path="res://Prefabs/Deprecated/HomingMissile.gd" id="1_wg2px"]
+[ext_resource type="Texture2D" uid="uid://cjdn43wxoh5er" path="res://icon.svg" id="2_clabj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vn1qd"]
+
+[node name="Missile" type="Area2D"]
+script = ExtResource("1_wg2px")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_clabj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vn1qd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq715h3ecwpbi"]
+
+[ext_resource type="AudioStream" uid="uid://71vso77qgcjr" path="res://Audio/Grooveville.mp3" id="1_xk86k"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_xk86k")
+volume_db = -5.062
+autoplay = true
