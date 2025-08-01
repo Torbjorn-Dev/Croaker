@@ -70,7 +70,6 @@ public partial class Player : CharacterBody2D
 	{
 		if (!GameStateManager.Instance.GetState(GameState.Paused) && !GameStateManager.Instance.GetState(GameState.LevelLost) && !GameStateManager.Instance.GetState(GameState.LevelWon))
 		{
-			//GD.Print(GameStateManager.Instance.GetState(GameState.LevelLost));
 			if (IsOnFloor())
 			{
 				if (!_isJumpCharging)
@@ -91,38 +90,23 @@ public partial class Player : CharacterBody2D
 				{
 					Velocity = new Vector2(0, Velocity.Y);
 				}
-				if (Input.IsActionPressed("ui_accept"))
+				if (Input.IsActionPressed("ChargeJump"))
 				{
 					_isJumpCharging = true;
 					ChargeSprite();
 					_jumpProjectionSprite.Visible = true;
+					_jumpProjectionSprite.Scale = new Vector2(Position.DistanceTo(GetGlobalMousePosition()) * 0.005f, Position.DistanceTo(GetGlobalMousePosition()) * 0.005f);
 
-					if (_jumpProjection.Rotation <= -2.7)
-					{
-						_isProjectionFlipped = true;
-					}
-					else if (_jumpProjection.Rotation >= -0.3)
-					{
-						_isProjectionFlipped = false;
-					}
-
-					if (_isProjectionFlipped)
-					{
-						_jumpProjection.RotationDegrees += _projectionSpeed;
-					}
-					else
-					{
-						_jumpProjection.RotationDegrees -= _projectionSpeed;
-					}
+					_jumpProjection.LookAt(GetGlobalMousePosition());
 				}
-				else if (Input.IsActionJustReleased("ui_accept"))
+				else if (Input.IsActionJustReleased("ChargeJump"))
 				{
 					JumpingSprite();
 					_canMove = true;
 					_timer.Start();
 					_jumpProjectionSprite.Visible = false;
 					var Direction = Position.DirectionTo(_jumpTarget.GlobalPosition);
-					Velocity = Direction.Normalized() * _jumpVelocity;
+					Velocity = Direction.Normalized() * Position.DistanceTo(GetGlobalMousePosition());
 
 					if (Velocity.X > 0)
 					{
@@ -137,7 +121,7 @@ public partial class Player : CharacterBody2D
 			else if (!IsOnFloor())
 			{
 				Velocity = new Vector2(Velocity.X, Velocity.Y + gravity * (float)delta);
-				if (Input.IsActionPressed("ui_accept"))
+				if (Input.IsActionPressed("ChargeJump"))
 				{
 					if (_bullets > 0)
 					{
@@ -151,14 +135,13 @@ public partial class Player : CharacterBody2D
 						{
 							FlippingSprite();
 							_flippingSprite.RotationDegrees += _projectionSpeed * 0.5f;
-							_aimProjection.RotationDegrees += _projectionSpeed * 0.5f;
 						}
 						else
 						{
 							FlippingSprite();
 							_flippingSprite.RotationDegrees -= _projectionSpeed * 0.5f;
-							_aimProjection.RotationDegrees -= _projectionSpeed * 0.5f;
 						}
+						_aimProjection.LookAt(GetGlobalMousePosition());
 					}
 					else
 					{
@@ -169,12 +152,34 @@ public partial class Player : CharacterBody2D
 							_isTimeSlowed = false;
 						}
 					}
+
+					if (Input.IsActionJustReleased("ChargeJump"))
+					{
+						GD.Print("Stopped flipping!");
+						if (_isTimeSlowed)
+						{
+							Engine.TimeScale = 1;
+							_isTimeSlowed = false;
+							_aimProjectionSprite.Visible = false;
+						}
+					}
+					else if (Input.IsActionJustPressed("Shoot"))
+					{
+						GD.Print("Shoot!");
+						if (_isTimeSlowed)
+						{
+							Shoot();
+							Engine.TimeScale = 1;
+							_isTimeSlowed = false;
+							_aimProjectionSprite.Visible = false;
+						}
+					}
 				}
-				else if (Input.IsActionJustReleased("ui_accept"))
+				else if (Input.IsActionJustReleased("ChargeJump"))
 				{
+					GD.Print("Stopped flipping!");
 					if (_isTimeSlowed)
 					{
-						Shoot();
 						Engine.TimeScale = 1;
 						_isTimeSlowed = false;
 						_aimProjectionSprite.Visible = false;
