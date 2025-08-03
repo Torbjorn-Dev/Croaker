@@ -18,6 +18,7 @@ public partial class Player : CharacterBody2D
 	[ExportCategory("Jump Settings")]
 	[Export] private float _jumpVelocity;
 	[Export] private float _projectionSpeed;
+	[Export] private float _flippingSpeed;
 	[Export] private Sprite2D _jumpProjection;
 	[Export] private Sprite2D _jumpProjectionSprite;
 	[Export] private Node2D _jumpTarget;
@@ -108,11 +109,11 @@ public partial class Player : CharacterBody2D
 
 					if (_isProjectionFlipped)
 					{
-						_jumpProjection.RotationDegrees += _projectionSpeed;
+						_jumpProjection.RotationDegrees += _projectionSpeed * (float)delta;
 					}
 					else
 					{
-						_jumpProjection.RotationDegrees -= _projectionSpeed;
+						_jumpProjection.RotationDegrees -= _projectionSpeed * (float)delta;
 					}
 				}
 				else if (Input.IsActionJustReleased("ui_accept"))
@@ -150,14 +151,14 @@ public partial class Player : CharacterBody2D
 						if (Velocity.X > 0)
 						{
 							FlippingSprite();
-							_flippingSprite.RotationDegrees += _projectionSpeed * 0.5f;
-							_aimProjection.RotationDegrees += _projectionSpeed * 0.5f;
+							_flippingSprite.RotationDegrees +=  _flippingSpeed * (float)delta;
+							_aimProjection.RotationDegrees +=  _flippingSpeed * (float)delta;
 						}
 						else
 						{
 							FlippingSprite();
-							_flippingSprite.RotationDegrees -= _projectionSpeed * 0.5f;
-							_aimProjection.RotationDegrees -= _projectionSpeed * 0.5f;
+							_flippingSprite.RotationDegrees -=  _flippingSpeed * (float)delta;
+							_aimProjection.RotationDegrees -=  _flippingSpeed * (float)delta;
 						}
 					}
 					else

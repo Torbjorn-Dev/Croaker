@@ -20,7 +20,8 @@ radius = 47.0
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_jumpProjection", "_jumpProjectionSprite", "_jumpTarget", "_aimProjection", "_aimProjectionSprite", "_fireLocation") groups=["player"]]
 script = ExtResource("1_xue05")
 _jumpVelocity = 1000.0
-_projectionSpeed = 0.1
+_projectionSpeed = 250.0
+_flippingSpeed = 750.0
 _jumpProjection = NodePath("JumpProjection")
 _jumpProjectionSprite = NodePath("JumpProjection/JumpProjectionSprite")
 _jumpTarget = NodePath("JumpProjection/JumpTarget")
