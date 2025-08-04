@@ -43,7 +43,7 @@ offset = Vector2(100, 0)
 [node name="JumpProjectionSprite" type="Sprite2D" parent="JumpProjection"]
 visible = false
 position = Vector2(150, 0)
-rotation = 1.5708
+rotation = 1.57079
 scale = Vector2(1.445, 2)
 texture = ExtResource("3_afiqs")
 
@@ -61,6 +61,7 @@ scale = Vector2(1, 2.55995)
 texture = ExtResource("4_nqc15")
 
 [node name="FireLocation" type="Node2D" parent="AimProjection"]
+visible = false
 position = Vector2(100, 0)
 
 [node name="Sprites" type="Node2D" parent="."]
