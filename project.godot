@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Toad Queller"
+config/name="Croaker"
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 boot_splash/image="uid://bjitj7hsegqmh"
