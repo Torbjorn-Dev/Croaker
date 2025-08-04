@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 public partial class Player : CharacterBody2D
 {
 	private float _currentSlowmotion;
-	private bool _isTimeSlowed = false;
 	private bool _isJumpCharging = false;
 	private bool _canMove;
 	private bool _movementStopped;
@@ -17,7 +16,6 @@ public partial class Player : CharacterBody2D
 
 	[ExportCategory("Jump Settings")]
 	[Export] private float _jumpVelocity;
-	[Export] private float _projectionSpeed;
 	[Export] private float _flippingSpeed;
 	[Export] private Sprite2D _jumpProjection;
 	[Export] private Sprite2D _jumpProjectionSprite;
@@ -62,7 +60,6 @@ public partial class Player : CharacterBody2D
 		_timer = GetNode<Timer>("Timer");
 
 		_aimProjectionSprite.Visible = false;
-		_isTimeSlowed = false;
 
 		Engine.TimeScale = 1;
 	}
@@ -81,11 +78,10 @@ public partial class Player : CharacterBody2D
 				{
 					RestoreBullets();
 				}
-				if (_isTimeSlowed)
+				if (Engine.TimeScale < 1)
 				{
 					Engine.TimeScale = 1;
 					_aimProjectionSprite.Visible = false;
-					_isTimeSlowed = false;
 				}
 				if (!_canMove)
 				{
@@ -122,39 +118,38 @@ public partial class Player : CharacterBody2D
 			else if (!IsOnFloor())
 			{
 				Velocity = new Vector2(Velocity.X, Velocity.Y + gravity * (float)delta);
-				if (Input.IsActionPressed("ChargeJump"))
+				if (Input.IsActionPressed("Aim"))
 				{
 					if (_bullets > 0)
 					{
-						if (!_isTimeSlowed)
+						if (Engine.TimeScale == 1)
 						{
 							Engine.TimeScale = 0.2f;
-							_isTimeSlowed = true;
 							_aimProjectionSprite.Visible = true;
 						}
+
 						if (Velocity.X > 0)
 						{
 							FlippingSprite();
-							_flippingSprite.RotationDegrees += _projectionSpeed * 0.5f;
+							_flippingSprite.RotationDegrees += _flippingSpeed * (float)delta;
 						}
 						else
 						{
 							FlippingSprite();
-							_flippingSprite.RotationDegrees -= _projectionSpeed * 0.5f;
+							_flippingSprite.RotationDegrees -= _flippingSpeed * (float)delta;
 						}
 						_aimProjection.LookAt(GetGlobalMousePosition());
 					}
 					else
 					{
 						_aimProjectionSprite.Visible = false;
-						if (_isTimeSlowed)
+						if (Engine.TimeScale < 1)
 						{
 							Engine.TimeScale = 1;
-							_isTimeSlowed = false;
 						}
 					}
 
-					if (Input.IsActionJustReleased("ChargeJump"))
+					/*if (Input.IsActionJustReleased("Aim"))
 					{
 						GD.Print("Stopped flipping!");
 						if (_isTimeSlowed)
@@ -163,26 +158,24 @@ public partial class Player : CharacterBody2D
 							_isTimeSlowed = false;
 							_aimProjectionSprite.Visible = false;
 						}
-					}
-					else if (Input.IsActionJustPressed("Shoot"))
+					}*/
+					if (Input.IsActionJustPressed("Shoot"))
 					{
 						GD.Print("Shoot!");
-						if (_isTimeSlowed)
+						if (Engine.TimeScale < 1)
 						{
 							Shoot();
 							Engine.TimeScale = 1;
-							_isTimeSlowed = false;
 							_aimProjectionSprite.Visible = false;
 						}
 					}
 				}
-				else if (Input.IsActionJustReleased("ChargeJump"))
+				else if (Input.IsActionJustReleased("Aim"))
 				{
 					GD.Print("Stopped flipping!");
-					if (_isTimeSlowed)
+					if (Engine.TimeScale < 1)
 					{
 						Engine.TimeScale = 1;
-						_isTimeSlowed = false;
 						_aimProjectionSprite.Visible = false;
 					}
 				}
