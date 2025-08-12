@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkypidfnwy2hc"]
+[gd_scene load_steps=13 format=3 uid="uid://dkypidfnwy2hc"]
 
 [ext_resource type="PackedScene" uid="uid://dp4uvs3iisoor" path="res://Prefabs/Player.tscn" id="1_krds6"]
 [ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/MissileToad.tscn" id="2_73hsl"]
 [ext_resource type="Texture2D" uid="uid://djy03svgxlctg" path="res://Sprites/fdgdg.png" id="2_b0jd8"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_l36ip"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="4_r3kea"]
+[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="4_rgu2x"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="5_dfxkc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sc7av"]
@@ -141,8 +142,7 @@ layer_2/tile_data = PackedInt32Array(1245175, 65536, 0, 1245176, 65536, 0, 12451
 [node name="Player" parent="." instance=ExtResource("1_krds6")]
 position = Vector2(-3, 506)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+[node name="GameCamera" parent="." instance=ExtResource("4_rgu2x")]
 
 [node name="Enemy Toad" parent="." instance=ExtResource("2_73hsl")]
 position = Vector2(656, 508)
@@ -211,109 +211,4 @@ offset_bottom = -498.0
 scale = Vector2(0.561716, 0.575176)
 texture = ExtResource("5_dfxkc")
 
-[node name="WinMenu" type="Control" parent="UI"]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="UI/WinMenu"]
-layout_mode = 0
-offset_left = -163.0
-offset_top = -86.0
-offset_right = 160.0
-offset_bottom = -17.0
-text = "Level beaten!"
-label_settings = SubResource("LabelSettings_inbmx")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NextLevelButton" type="Button" parent="UI/WinMenu"]
-layout_mode = 0
-offset_left = -213.0
-offset_right = 205.0
-offset_bottom = 89.0
-
-[node name="Label" type="Label" parent="UI/WinMenu/NextLevelButton"]
-layout_mode = 0
-offset_right = 420.0
-offset_bottom = 89.0
-text = "Next level"
-label_settings = SubResource("LabelSettings_ocw77")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BackToMenuButton" type="Button" parent="UI/WinMenu"]
-layout_mode = 0
-offset_left = -134.0
-offset_top = 105.0
-offset_right = 284.0
-offset_bottom = 194.0
-scale = Vector2(0.64, 1)
-
-[node name="Label" type="Label" parent="UI/WinMenu/BackToMenuButton"]
-layout_mode = 0
-offset_right = 420.0
-offset_bottom = 89.0
-text = "Back to menu
-"
-label_settings = SubResource("LabelSettings_ocw77")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LoseMenu" type="Control" parent="UI"]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="UI/LoseMenu"]
-layout_mode = 0
-offset_left = -163.0
-offset_top = -86.0
-offset_right = 160.0
-offset_bottom = -17.0
-text = "You died!"
-label_settings = SubResource("LabelSettings_inbmx")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RetryButton" type="Button" parent="UI/LoseMenu"]
-layout_mode = 0
-offset_left = -213.0
-offset_right = 205.0
-offset_bottom = 89.0
-
-[node name="Label" type="Label" parent="UI/LoseMenu/RetryButton"]
-layout_mode = 0
-offset_right = 420.0
-offset_bottom = 89.0
-text = "Retry level"
-label_settings = SubResource("LabelSettings_ocw77")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BackToMenuButton" type="Button" parent="UI/LoseMenu"]
-layout_mode = 0
-offset_left = -134.0
-offset_top = 105.0
-offset_right = 284.0
-offset_bottom = 194.0
-scale = Vector2(0.64, 1)
-
-[node name="Label" type="Label" parent="UI/LoseMenu/BackToMenuButton"]
-layout_mode = 0
-offset_right = 420.0
-offset_bottom = 89.0
-text = "Back to menu
-"
-label_settings = SubResource("LabelSettings_ocw77")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="button_down" from="UI/Menu/BackToMenu" to="UI" method="_on_back_to_menu_button_down"]
-[connection signal="button_down" from="UI/WinMenu/NextLevelButton" to="UI" method="_on_next_level_button_button_down"]
-[connection signal="button_down" from="UI/WinMenu/BackToMenuButton" to="UI" method="_on_back_to_menu_button_button_down"]
-[connection signal="button_down" from="UI/LoseMenu/RetryButton" to="UI" method="_on_retry_button_button_down"]
-[connection signal="button_down" from="UI/LoseMenu/BackToMenuButton" to="UI" method="_on_back_to_menu_button_button_down"]
