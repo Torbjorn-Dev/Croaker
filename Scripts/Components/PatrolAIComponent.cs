@@ -1,40 +1,52 @@
 using Godot;
 using System;
+using System.Numerics;
 
 public partial class PatrolAIComponent : Node2D
 {
+    [Export] public float PatrolSpeed;
+    public bool IsPatrolling = true;
+    public Godot.Vector2 PatrolVelocity;
+    private CharacterBody2D _patrollingParent;
 
-    private Node2D PatrollingCreature; // The creature that should be patrolling.
 
-    [Export] private float _patrolSpeed;
-    [Export] private Node2D[] _patrolPoints;
-    private int _nextPatrolPoint;
+    [Export] private Marker2D[] _patrolPoints;
+    private int _currentPatrolPointIndex;
 
     public override void _Ready()
     {
-        PatrollingCreature = (Node2D)GetParent();
-        _nextPatrolPoint = 0;
+        _patrollingParent = GetParent<CharacterBody2D>();
+
+        if (_patrolPoints.Length <= 0)
+        {
+            GD.Print("No patrol points were set!");
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        MoveToNextPoint();
-    }
-
-    private void MoveToNextPoint()
-    {
-        PatrollingCreature.Position.Lerp(_patrolPoints[_nextPatrolPoint].Position, _patrolSpeed);
-
-        if (PatrollingCreature.Position == _patrolPoints[_nextPatrolPoint].Position)
+        if (IsPatrolling)
         {
-            DecideNextPoint();
+            Patrol();
         }
     }
 
-    private void DecideNextPoint()
+    public void Patrol()
     {
-        _nextPatrolPoint++;
-        GD.Print("Next patrol point: " + _nextPatrolPoint);
+        if (_patrolPoints.Length > 0)
+        {
+            Godot.Vector2 target = _patrolPoints[_currentPatrolPointIndex].Position;
+            PatrolVelocity = (target - _patrollingParent.Position).Normalized() * PatrolSpeed;
+
+            if (_patrollingParent.Position.DistanceTo(target) < 10)
+            {
+                _currentPatrolPointIndex++;
+                if (_currentPatrolPointIndex >= _patrolPoints.Length)
+                {
+                    _currentPatrolPointIndex = 0;
+                }
+            }
+        }
     }
 
 }

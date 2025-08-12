@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MissileToad : Node2D
+public partial class MissileToad : CharacterBody2D
 {
 
     [Export] private PackedScene _missileScene;
@@ -15,6 +15,13 @@ public partial class MissileToad : Node2D
         _timer = GetNode<Timer>("Timer");
         _timer.Start();
     }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        Velocity = GetNode<PatrolAIComponent>("PatrolAI").PatrolVelocity;
+        MoveAndSlide();
+    }
+
 
     public void OnTimerTimeout()
     {

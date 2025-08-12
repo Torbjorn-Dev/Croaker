@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm40swn3mmib2"]
+[gd_scene load_steps=12 format=3 uid="uid://bm40swn3mmib2"]
 
 [ext_resource type="Script" uid="uid://wbfjkq0inre1" path="res://Scripts/MissileToad.cs" id="1_qtagl"]
 [ext_resource type="Texture2D" uid="uid://bjglli7dc7cje" path="res://Sprites/Toad.png" id="2_ha83v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="3_txdqs"]
 [ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="4_54wu3"]
 [ext_resource type="PackedScene" uid="uid://d4ehjnyug6v0k" path="res://Prefabs/Killzone.tscn" id="5_hnp0a"]
+[ext_resource type="PackedScene" uid="uid://bpeo84eav4pyy" path="res://Prefabs/Components/PatrolAI.tscn" id="8_54wu3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fu237"]
 radius = 65.4905
@@ -14,7 +15,10 @@ radius = 65.4905
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vclod"]
 size = Vector2(65, 139)
 
-[node name="Missile Toad" type="Node2D" node_paths=PackedStringArray("_fireLocation") groups=["Enemies"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txdqs"]
+size = Vector2(63, 133)
+
+[node name="Missile Toad" type="CharacterBody2D" node_paths=PackedStringArray("_fireLocation") groups=["Enemies"]]
 script = ExtResource("1_qtagl")
 _missileScene = ExtResource("2_txdqs")
 _deathParticleScene = ExtResource("3_54wu3")
@@ -46,6 +50,13 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(-4.5, -2.5)
 shape = SubResource("RectangleShape2D_vclod")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 3.5)
+shape = SubResource("RectangleShape2D_txdqs")
+
+[node name="PatrolAI" parent="." instance=ExtResource("8_54wu3")]
+PatrolSpeed = 100.0
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
