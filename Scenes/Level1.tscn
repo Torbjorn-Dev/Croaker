@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cnlvmq6epf64k"]
+[gd_scene load_steps=15 format=3 uid="uid://cnlvmq6epf64k"]
 
 [ext_resource type="Texture2D" uid="uid://bdy0bxidv3f01" path="res://Sprites/tilemap.png" id="1_t3or0"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_ysn8j"]
 [ext_resource type="PackedScene" uid="uid://dp4uvs3iisoor" path="res://Prefabs/Player.tscn" id="3_6ll4n"]
 [ext_resource type="PackedScene" uid="uid://ctcfvnn2pw1ss" path="res://Prefabs/Pickup.tscn" id="4_kylad"]
+[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="4_ysn8j"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_bdlbp"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="6_2h8qs"]
 
@@ -277,8 +278,7 @@ horizontal_alignment = 1
 [node name="Player" parent="." instance=ExtResource("3_6ll4n")]
 position = Vector2(-701, 509)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+[node name="GameCamera" parent="." instance=ExtResource("4_ysn8j")]
 
 [node name="Pickup" parent="." instance=ExtResource("4_kylad")]
 position = Vector2(-760, -430)

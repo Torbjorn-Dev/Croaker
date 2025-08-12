@@ -38,6 +38,7 @@ movie_writer/disable_vsync=true
 [global_group]
 
 Enemies=""
+Player=""
 
 [input]
 
