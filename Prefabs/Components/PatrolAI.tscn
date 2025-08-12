@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpeo84eav4pyy"]
+
+[ext_resource type="Script" uid="uid://b7b0cggh4c5bw" path="res://Scripts/Components/PatrolAIComponent.cs" id="1_h1but"]
+
+[node name="PatrolAi" type="Node2D" node_paths=PackedStringArray("_patrolPoints")]
+script = ExtResource("1_h1but")
+_patrolPoints = []
