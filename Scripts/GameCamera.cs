@@ -14,14 +14,25 @@ public partial class GameCamera : Camera2D
 
     public override void _PhysicsProcess(double delta)
     {
-        FollowPlayer();
+        if (Input.IsActionPressed("Aim"))
+        {
+            FollowMouse();
+        }
+        else
+        {
+            FollowPlayer();
+        }
+    }
+
+    public void FollowMouse()
+    {
+        Position = Position.Lerp(_player.Position.Lerp(GetGlobalMousePosition(), 0.35f), 0.05f);
     }
 
     public void FollowPlayer()
     {
-        //float DistanceMultiplier = Math.Min(25, Position.DistanceTo(_player.Position) * 0.01f);
-        //Position = Position.Lerp(_player.Position.Lerp(GetGlobalMousePosition(), 0.33f), 0.01f * DistanceMultiplier);
-        Position = Position.Lerp(_player.Position.Lerp(GetGlobalMousePosition(), 0.25f), 0.05f);
+        float DistanceMultiplier = Math.Min(25, Position.DistanceTo(_player.Position) * 0.01f);
+        Position = Position.Lerp(_player.Position, 0.01f * DistanceMultiplier);
     }
 
 }
