@@ -4,4 +4,10 @@
 
 [node name="PatrolAi" type="Node2D" node_paths=PackedStringArray("_patrolPoints")]
 script = ExtResource("1_h1but")
+PatrolSpeed = 100.0
+IdleTime = 5.0
 _patrolPoints = []
+
+[node name="IdleTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="IdleTimer" to="." method="OnIdleTimerTimeout"]

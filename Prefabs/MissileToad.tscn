@@ -56,7 +56,6 @@ position = Vector2(-4.5, 3.5)
 shape = SubResource("RectangleShape2D_txdqs")
 
 [node name="PatrolAI" parent="." instance=ExtResource("8_54wu3")]
-PatrolSpeed = 100.0
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]

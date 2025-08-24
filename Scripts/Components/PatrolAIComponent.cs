@@ -1,13 +1,15 @@
 using Godot;
 using System;
-using System.Numerics;
 
 public partial class PatrolAIComponent : Node2D
 {
     [Export] public float PatrolSpeed;
+    [Export] public float IdleTime;
     public bool IsPatrolling = true;
-    public Godot.Vector2 PatrolVelocity;
+    public bool IsIdling = false;
+    public Vector2 PatrolVelocity;
     private CharacterBody2D _patrollingParent;
+    private Timer _idleTimer;
 
 
     [Export] private Marker2D[] _patrolPoints;
@@ -16,6 +18,8 @@ public partial class PatrolAIComponent : Node2D
     public override void _Ready()
     {
         _patrollingParent = GetParent<CharacterBody2D>();
+        _idleTimer = GetNode<Timer>("IdleTimer");
+        _idleTimer.WaitTime = IdleTime;
 
         if (_patrolPoints.Length <= 0)
         {
@@ -25,7 +29,7 @@ public partial class PatrolAIComponent : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (IsPatrolling)
+        if (!IsIdling)
         {
             Patrol();
         }
@@ -35,7 +39,7 @@ public partial class PatrolAIComponent : Node2D
     {
         if (_patrolPoints.Length > 0)
         {
-            Godot.Vector2 target = _patrolPoints[_currentPatrolPointIndex].Position;
+            Vector2 target = _patrolPoints[_currentPatrolPointIndex].Position;
             PatrolVelocity = (target - _patrollingParent.Position).Normalized() * PatrolSpeed;
 
             if (_patrollingParent.Position.DistanceTo(target) < 10)
@@ -45,8 +49,16 @@ public partial class PatrolAIComponent : Node2D
                 {
                     _currentPatrolPointIndex = 0;
                 }
+                _idleTimer.Start();
+                PatrolVelocity = new Vector2(0, 0);
+                IsIdling = true;
             }
         }
+    }
+
+    public void OnIdleTimerTimeout()
+    {
+        IsIdling = false;
     }
 
 }
