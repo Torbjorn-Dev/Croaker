@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bugaj3cdgkwu7"]
+
+[ext_resource type="Script" uid="uid://brbridjc8vhqe" path="res://Scripts/Dialogue/DialogueSystem.cs" id="1_kmlbb"]
+
+[node name="DialogueSystem" type="CanvasLayer"]
+script = ExtResource("1_kmlbb")
+
+[node name="SpeakerName" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Message" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
