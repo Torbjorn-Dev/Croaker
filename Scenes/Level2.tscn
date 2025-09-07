@@ -184,6 +184,9 @@ position = Vector2(971, 510)
 rotation = -3.14159
 scale = Vector2(1, -1)
 
+[node name="PatrolAI" parent="Enemy Toad" index="7" node_paths=PackedStringArray("_patrolPoints")]
+_patrolPoints = [NodePath("../../Patrol Markers/Marker2D"), NodePath("../../Patrol Markers/Marker2D2"), NodePath("../../Patrol Markers/Marker2D3")]
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -244,4 +247,17 @@ offset_bottom = -498.0
 scale = Vector2(0.561716, 0.575176)
 texture = ExtResource("6_au75x")
 
+[node name="Patrol Markers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Patrol Markers"]
+position = Vector2(405, 510)
+
+[node name="Marker2D2" type="Marker2D" parent="Patrol Markers"]
+position = Vector2(843, 512)
+
+[node name="Marker2D3" type="Marker2D" parent="Patrol Markers"]
+position = Vector2(582, 512)
+
 [connection signal="button_down" from="UI/Menu/BackToMenu" to="UI" method="_on_back_to_menu_button_down"]
+
+[editable path="Enemy Toad"]
