@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ckiyem341m6nr" path="res://Prefabs/Menus/PauseMenu.tscn" id="4_tvdl1"]
 
 [node name="GameManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_4v1xe")
 _winMenuScene = ExtResource("2_k2p31")
 _loseMenuScene = ExtResource("3_7eqy8")

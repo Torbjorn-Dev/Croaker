@@ -2,13 +2,23 @@
 
 [ext_resource type="Script" uid="uid://brbridjc8vhqe" path="res://Scripts/Dialogue/DialogueSystem.cs" id="1_kmlbb"]
 
-[node name="DialogueSystem" type="CanvasLayer"]
+[node name="DialogueSystem" type="CanvasLayer" node_paths=PackedStringArray("_nameLabel", "_messageLabel")]
+process_mode = 3
 script = ExtResource("1_kmlbb")
+_nameLabel = NodePath("SpeakerName")
+_messageLabel = NodePath("Message")
 
 [node name="SpeakerName" type="RichTextLabel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 357.0
+offset_top = 391.0
+offset_right = 773.0
+offset_bottom = 480.0
+text = "Croaker:"
+scroll_active = false
 
 [node name="Message" type="RichTextLabel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 357.0
+offset_top = 411.0
+offset_right = 773.0
+offset_bottom = 546.0
+text = "Skibidi"

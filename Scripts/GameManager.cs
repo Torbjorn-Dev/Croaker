@@ -46,7 +46,8 @@ public partial class GameManager : Node
     public void WinLevel()
     {
         GameStateManager.Instance.SetState(GameState.LevelWon, true);
-        Engine.TimeScale = 0;
+        GetTree().Paused = true;
+        //Engine.TimeScale = 0;
         _winMenu.Visible = true;
     }
 
@@ -54,7 +55,8 @@ public partial class GameManager : Node
     {
         GameStateManager.Instance.SetState(GameState.LevelLost, true);
         GD.Print(GameStateManager.Instance.GetState(GameState.LevelLost));
-        Engine.TimeScale = 0;
+        GetTree().Paused = true;
+        //Engine.TimeScale = 0;
         _loseMenu.Visible = true;
     }
 
@@ -69,13 +71,15 @@ public partial class GameManager : Node
         if (GameStateManager.Instance.GetState(GameState.Paused))
         {
             GameStateManager.Instance.SetState(GameState.Paused, false);
-            Engine.TimeScale = 1;
+            GetTree().Paused = false;
+            //Engine.TimeScale = 1;
             _pauseMenu.Visible = false;
         }
         else
         {
             GameStateManager.Instance.SetState(GameState.Paused, true);
-            Engine.TimeScale = 0;
+            GetTree().Paused = true;
+            //Engine.TimeScale = 0;
             _pauseMenu.Visible = true;
         }
     }
@@ -86,6 +90,8 @@ public partial class GameManager : Node
         _winMenu.Visible = false;
         _loseMenu.Visible = false;
         _pauseMenu.Visible = false;
+
+        GetTree().Paused = false;
     }
 
     public void LoadScene(String ScenePath)

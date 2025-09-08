@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://3d162c5vqw0o"]
+
+[ext_resource type="Script" uid="uid://x1qmicxowtsy" path="res://Scripts/Dialogue/DialogueTrigger.cs" id="1_74u6x"]
+[ext_resource type="PackedScene" uid="uid://bugaj3cdgkwu7" path="res://Prefabs/Systems & Managers/DialogueSystem.tscn" id="2_fvnk8"]
+
+[node name="DialogueTrigger" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_74u6x")
+_dialogueSystemPackedScene = ExtResource("2_fvnk8")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered2D"]

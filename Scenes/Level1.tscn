@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnlvmq6epf64k"]
+[gd_scene load_steps=17 format=3 uid="uid://cnlvmq6epf64k"]
 
 [ext_resource type="Texture2D" uid="uid://bdy0bxidv3f01" path="res://Sprites/tilemap.png" id="1_t3or0"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_ysn8j"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="4_ysn8j"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_bdlbp"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="6_2h8qs"]
-[ext_resource type="PackedScene" uid="uid://bugaj3cdgkwu7" path="res://Prefabs/Systems & Managers/DialogueSystem.tscn" id="8_6ll4n"]
+[ext_resource type="PackedScene" uid="uid://3d162c5vqw0o" path="res://Prefabs/DialogueTrigger.tscn" id="8_6ll4n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pug6d"]
 texture = ExtResource("1_t3or0")
@@ -193,6 +193,9 @@ _data = {
 &"RESET": SubResource("Animation_113ky")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kylad"]
+size = Vector2(185, 317.5)
+
 [node name="Level1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -318,5 +321,9 @@ offset_bottom = -498.0
 scale = Vector2(0.561716, 0.575176)
 texture = ExtResource("6_2h8qs")
 
-[node name="DialogueSystem" parent="." instance=ExtResource("8_6ll4n")]
+[node name="DialogueTrigger" parent="." instance=ExtResource("8_6ll4n")]
 _dialogueFile = "res://Scripts/Dialogue/DialogueData/Codec1.json"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
+position = Vector2(-382, -499.25)
+shape = SubResource("RectangleShape2D_kylad")
