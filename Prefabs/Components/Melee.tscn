@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://df7u1owbpelkd"]
+
+[ext_resource type="Script" uid="uid://c42lgdsdtqvd5" path="res://Scripts/Components/MeleeComponent.cs" id="1_4suii"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfsn1"]
+radius = 85.0
+
+[node name="Melee" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_4suii")
+_meleeDamage = 1
+_bouncePower = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kfsn1")
+
+[connection signal="area_entered" from="." to="." method="onAreaEntered2D"]

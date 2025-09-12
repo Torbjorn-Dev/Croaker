@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp4uvs3iisoor"]
+[gd_scene load_steps=14 format=3 uid="uid://dp4uvs3iisoor"]
 
 [ext_resource type="Script" uid="uid://dq5fo8el2qvdf" path="res://Scripts/Player.cs" id="1_xue05"]
 [ext_resource type="PackedScene" uid="uid://bbl161hk2x3ow" path="res://Prefabs/Bullet.tscn" id="2_b8exh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b8nd0cvkyxa2g" path="res://Sprites/frog ball.png" id="8_4fq3e"]
 [ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="9_qbwkk"]
 [ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="10_t8lmw"]
+[ext_resource type="PackedScene" uid="uid://df7u1owbpelkd" path="res://Prefabs/Components/Melee.tscn" id="11_k2qb3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_niob6"]
 radius = 47.0956
@@ -99,6 +100,8 @@ shape = SubResource("CircleShape2D_l2r3c")
 
 [node name="Health" parent="." instance=ExtResource("10_t8lmw")]
 position = Vector2(88.0016, -13.1844)
+
+[node name="Melee" parent="." instance=ExtResource("11_k2qb3")]
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]

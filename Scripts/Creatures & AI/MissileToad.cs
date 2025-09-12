@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MissileToad : CharacterBody2D
+public partial class MissileToad : Creature
 {
 
     [Export] private PackedScene _missileScene;

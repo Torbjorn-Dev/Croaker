@@ -1,19 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bm40swn3mmib2"]
+[gd_scene load_steps=10 format=3 uid="uid://bm40swn3mmib2"]
 
-[ext_resource type="Script" uid="uid://wbfjkq0inre1" path="res://Scripts/MissileToad.cs" id="1_qtagl"]
+[ext_resource type="Script" uid="uid://wbfjkq0inre1" path="res://Scripts/Creatures & AI/MissileToad.cs" id="1_qtagl"]
 [ext_resource type="Texture2D" uid="uid://bjglli7dc7cje" path="res://Sprites/Toad.png" id="2_ha83v"]
 [ext_resource type="PackedScene" uid="uid://xlk63x7g3tjg" path="res://Prefabs/HomingMissile.tscn" id="2_txdqs"]
 [ext_resource type="PackedScene" uid="uid://jj1bftsql82v" path="res://Prefabs/DeathParticles.tscn" id="3_54wu3"]
 [ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="3_txdqs"]
 [ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="4_54wu3"]
-[ext_resource type="PackedScene" uid="uid://d4ehjnyug6v0k" path="res://Prefabs/Killzone.tscn" id="5_hnp0a"]
 [ext_resource type="PackedScene" uid="uid://bpeo84eav4pyy" path="res://Prefabs/Components/PatrolAI.tscn" id="8_54wu3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fu237"]
 radius = 65.4905
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vclod"]
-size = Vector2(65, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txdqs"]
 size = Vector2(63, 133)
@@ -43,13 +39,6 @@ collision_layer = 2
 shape = SubResource("CircleShape2D_fu237")
 
 [node name="Health" parent="." instance=ExtResource("4_54wu3")]
-
-[node name="Killzone" parent="." instance=ExtResource("5_hnp0a")]
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(-4.5, -2.5)
-shape = SubResource("RectangleShape2D_vclod")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4.5, 3.5)

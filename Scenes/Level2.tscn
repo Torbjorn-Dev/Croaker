@@ -184,7 +184,7 @@ position = Vector2(971, 510)
 rotation = -3.14159
 scale = Vector2(1, -1)
 
-[node name="PatrolAI" parent="Enemy Toad" index="7" node_paths=PackedStringArray("_patrolPoints")]
+[node name="PatrolAI" parent="Enemy Toad" index="6" node_paths=PackedStringArray("_patrolPoints")]
 _patrolPoints = [NodePath("../../Patrol Markers/Marker2D"), NodePath("../../Patrol Markers/Marker2D2"), NodePath("../../Patrol Markers/Marker2D3")]
 
 [node name="UI" type="Control" parent="."]
