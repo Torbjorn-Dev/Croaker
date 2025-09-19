@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfhi3ivl4wrbk"]
+[gd_scene load_steps=15 format=3 uid="uid://dfhi3ivl4wrbk"]
 
 [ext_resource type="Texture2D" uid="uid://djy03svgxlctg" path="res://Sprites/fdgdg.png" id="1_jriq2"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_ehjmi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_ejprb"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="6_au75x"]
 [ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="7_ehjmi"]
+[ext_resource type="PackedScene" uid="uid://cxus1chu0t4lv" path="res://Prefabs/rain_1.tscn" id="8_p4u3k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cl18p"]
 texture = ExtResource("1_jriq2")
@@ -257,6 +258,8 @@ position = Vector2(843, 512)
 
 [node name="Marker2D3" type="Marker2D" parent="Patrol Markers"]
 position = Vector2(582, 512)
+
+[node name="rain 1" parent="." instance=ExtResource("8_p4u3k")]
 
 [connection signal="button_down" from="UI/Menu/BackToMenu" to="UI" method="_on_back_to_menu_button_down"]
 
