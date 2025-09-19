@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dfhi3ivl4wrbk"]
+[gd_scene load_steps=15 format=3 uid="uid://dfhi3ivl4wrbk"]
 
 [ext_resource type="Texture2D" uid="uid://djy03svgxlctg" path="res://Sprites/fdgdg.png" id="1_jriq2"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_ehjmi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_ejprb"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="6_au75x"]
 [ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="7_ehjmi"]
+[ext_resource type="PackedScene" uid="uid://cxus1chu0t4lv" path="res://Prefabs/rain_1.tscn" id="8_p4u3k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cl18p"]
 texture = ExtResource("1_jriq2")
@@ -130,57 +131,6 @@ font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_gleve"]
 font_size = 30
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ehjmi"]
-blend_mode = 1
-
-[sub_resource type="Curve" id="Curve_p4u3k"]
-_limits = [0.0, 0.3, 0.0, 1.0]
-_data = [Vector2(0.0294118, 0.00674158), 0.0, 1.54198, 0, 0, Vector2(0.5, 0.3), 1.15803e-07, 1.15803e-07, 0, 0, Vector2(1, 0), -1.62996, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_70df5"]
-curve = SubResource("Curve_p4u3k")
-
-[sub_resource type="Gradient" id="Gradient_ejprb"]
-offsets = PackedFloat32Array(0, 0.0090909, 0.990909, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.937255, 0.937255, 0.937255, 0.0784314, 0.541201, 0.541201, 0.541201, 1, 1, 1, 1, 1)
-metadata/_snap_count = 2
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_au75x"]
-gradient = SubResource("Gradient_ejprb")
-
-[sub_resource type="Curve" id="Curve_62f1r"]
-_limits = [0.0, 3.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_1je60"]
-_limits = [0.0, 30.0, 0.0, 1.0]
-_data = [Vector2(0.0220588, 16.1798), 0.0, 0.0, 0, 0, Vector2(0.5, 30), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_ycmr1"]
-_limits = [0.0, 3.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_2jwna"]
-curve_x = SubResource("Curve_62f1r")
-curve_y = SubResource("Curve_1je60")
-curve_z = SubResource("Curve_ycmr1")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sgc6j"]
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(0, -200, 0)
-emission_shape = 3
-emission_box_extents = Vector3(350, 1, 1)
-gravity = Vector3(0, 6000, 0)
-scale_min = 3.0
-scale_max = 3.0
-scale_over_velocity_curve = SubResource("CurveXYZTexture_2jwna")
-color_ramp = SubResource("GradientTexture1D_au75x")
-alpha_curve = SubResource("CurveTexture_70df5")
 
 [node name="Level2" type="Node2D"]
 
@@ -306,13 +256,7 @@ position = Vector2(843, 512)
 [node name="Marker2D3" type="Marker2D" parent="Patrol Markers"]
 position = Vector2(582, 512)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_ehjmi")
-scale = Vector2(3.16, 3.2)
-amount = 1000
-preprocess = 0.5
-visibility_rect = Rect2(-350, -200, 700, 400)
-process_material = SubResource("ParticleProcessMaterial_sgc6j")
+[node name="rain 1" parent="." instance=ExtResource("8_p4u3k")]
 
 [connection signal="button_down" from="UI/Menu/BackToMenu" to="UI" method="_on_back_to_menu_button_down"]
 
