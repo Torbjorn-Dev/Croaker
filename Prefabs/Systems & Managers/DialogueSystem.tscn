@@ -1,12 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bugaj3cdgkwu7"]
+[gd_scene load_steps=3 format=3 uid="uid://bugaj3cdgkwu7"]
 
 [ext_resource type="Script" uid="uid://brbridjc8vhqe" path="res://Scripts/Dialogue/DialogueSystem.cs" id="1_kmlbb"]
+[ext_resource type="Texture2D" uid="uid://cjdn43wxoh5er" path="res://icon.svg" id="2_ehwok"]
 
-[node name="DialogueSystem" type="CanvasLayer" node_paths=PackedStringArray("_nameLabel", "_messageLabel")]
+[node name="DialogueSystem" type="CanvasLayer" node_paths=PackedStringArray("_nameLabel", "_messageLabel", "_portrait1", "_portrait2")]
 process_mode = 3
 script = ExtResource("1_kmlbb")
 _nameLabel = NodePath("SpeakerName")
 _messageLabel = NodePath("Message")
+_portrait1 = NodePath("Portrait1")
+_portrait2 = NodePath("Portrait2")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -15.0
+offset_top = -14.0
+offset_right = 1159.0
+offset_bottom = 657.0
+color = Color(0.485618, 1, 0.0732973, 0.266667)
 
 [node name="SpeakerName" type="RichTextLabel" parent="."]
 offset_left = 357.0
@@ -22,3 +32,19 @@ offset_top = 411.0
 offset_right = 773.0
 offset_bottom = 546.0
 text = "Skibidi"
+
+[node name="Portrait1" type="TextureRect" parent="."]
+offset_left = 350.0
+offset_top = 180.0
+offset_right = 478.0
+offset_bottom = 308.0
+texture = ExtResource("2_ehwok")
+expand_mode = 1
+
+[node name="Portrait2" type="TextureRect" parent="."]
+offset_left = 650.0
+offset_top = 180.0
+offset_right = 778.0
+offset_bottom = 308.0
+texture = ExtResource("2_ehwok")
+expand_mode = 1
