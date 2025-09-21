@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://bolo138vbisqk"]
+
+[ext_resource type="Shader" uid="uid://dcsjppb4uvsvn" path="res://Shaders/LoadingScreenTransition.gdshader" id="1_5it6q"]
+[ext_resource type="Texture2D" uid="uid://bjitj7hsegqmh" path="res://Sprites/frog waiting.png" id="2_yfjir"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldc8q"]
+shader = ExtResource("1_5it6q")
+shader_parameter/spacing = 17.31
+shader_parameter/animation_progress = 1.0
+shader_parameter/dot_size = 1.0
+shader_parameter/dot_color = Color(0.071122, 0.192374, 2.40654e-08, 1)
+
+[sub_resource type="Animation" id="Animation_vdrv6"]
+resource_name = "LoadingTransition"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/animation_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 0.34151),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingImage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.297302, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RichTextLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.287175, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qy11i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/animation_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoadingImage:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RichTextLabel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yp8jm"]
+_data = {
+&"LoadingTransition": SubResource("Animation_vdrv6"),
+&"RESET": SubResource("Animation_qy11i")
+}
+
+[node name="LoadingScreen" type="ColorRect"]
+material = SubResource("ShaderMaterial_ldc8q")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="LoadingImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 310.0
+offset_right = 359.0
+offset_bottom = 658.0
+texture = ExtResource("2_yfjir")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yp8jm")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 747.0
+offset_top = 29.0
+offset_right = 1110.0
+offset_bottom = 153.0
+rotation = 0.0973328
+theme_override_font_sizes/normal_font_size = 86
+text = "Croaker"
