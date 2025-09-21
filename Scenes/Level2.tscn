@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dp4uvs3iisoor" path="res://Prefabs/Player.tscn" id="3_p4u3k"]
 [ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/MissileToad.tscn" id="4_70df5"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_ejprb"]
-[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="6_au75x"]
+[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="6_au75x"]
 [ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="7_ehjmi"]
 [ext_resource type="PackedScene" uid="uid://cxus1chu0t4lv" path="res://Prefabs/rain_1.tscn" id="8_p4u3k"]
 

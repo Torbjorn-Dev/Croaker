@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctcfvnn2pw1ss" path="res://Prefabs/Pickup.tscn" id="4_kylad"]
 [ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="4_ysn8j"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_bdlbp"]
-[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="6_2h8qs"]
+[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="6_2h8qs"]
 [ext_resource type="PackedScene" uid="uid://3d162c5vqw0o" path="res://Prefabs/DialogueTrigger.tscn" id="8_6ll4n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pug6d"]

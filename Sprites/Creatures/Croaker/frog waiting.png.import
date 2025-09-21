@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjitj7hsegqmh"
-path="res://.godot/imported/frog waiting.png-40dff25043b1491eeb3cab3f60e20224.ctex"
+path="res://.godot/imported/frog waiting.png-0c8125e44036499d5fdd3cefe04709f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/frog waiting.png"
-dest_files=["res://.godot/imported/frog waiting.png-40dff25043b1491eeb3cab3f60e20224.ctex"]
+source_file="res://Sprites/Creatures/Croaker/frog waiting.png"
+dest_files=["res://.godot/imported/frog waiting.png-0c8125e44036499d5fdd3cefe04709f7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcgv3xteqerab"
-path="res://.godot/imported/JumpProjection.png-b126a431e87b883c2933d850af4859fe.ctex"
+uid="uid://b8nd0cvkyxa2g"
+path="res://.godot/imported/frog ball.png-9f635419ce1bd79b8da6db62d763b4c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/JumpProjection.png"
-dest_files=["res://.godot/imported/JumpProjection.png-b126a431e87b883c2933d850af4859fe.ctex"]
+source_file="res://Sprites/Creatures/Croaker/frog ball.png"
+dest_files=["res://.godot/imported/frog ball.png-9f635419ce1bd79b8da6db62d763b4c3.ctex"]
 
 [params]
 

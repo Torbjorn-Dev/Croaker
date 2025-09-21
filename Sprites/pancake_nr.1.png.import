@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8nd0cvkyxa2g"
-path="res://.godot/imported/frog ball.png-c0db8505b8e34c093159bceef24077f8.ctex"
+uid="uid://cfh7k4oilk863"
+path="res://.godot/imported/pancake_nr.1.png-a571456d4c79bc5cfb8d58d26b14cdf3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/frog ball.png"
-dest_files=["res://.godot/imported/frog ball.png-c0db8505b8e34c093159bceef24077f8.ctex"]
+source_file="res://Sprites/pancake_nr.1.png"
+dest_files=["res://.godot/imported/pancake_nr.1.png-a571456d4c79bc5cfb8d58d26b14cdf3.ctex"]
 
 [params]
 

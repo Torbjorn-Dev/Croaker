@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bm40swn3mmib2"]
 
 [ext_resource type="Script" uid="uid://wbfjkq0inre1" path="res://Scripts/Creatures & AI/MissileToad.cs" id="1_qtagl"]
-[ext_resource type="Texture2D" uid="uid://bjglli7dc7cje" path="res://Sprites/Toad.png" id="2_ha83v"]
+[ext_resource type="Texture2D" uid="uid://bjglli7dc7cje" path="res://Sprites/Creatures/Toad.png" id="2_ha83v"]
 [ext_resource type="PackedScene" uid="uid://xlk63x7g3tjg" path="res://Prefabs/HomingMissile.tscn" id="2_txdqs"]
 [ext_resource type="PackedScene" uid="uid://jj1bftsql82v" path="res://Prefabs/DeathParticles.tscn" id="3_54wu3"]
 [ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="3_txdqs"]

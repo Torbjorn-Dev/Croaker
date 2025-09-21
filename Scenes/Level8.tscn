@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="4_2l5kb"]
 [ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/MissileToad.tscn" id="4_d1c10"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_c48uv"]
-[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/bullet.png" id="6_uvhfw"]
+[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="6_uvhfw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sc7av"]
 texture = ExtResource("1_7d5v0")

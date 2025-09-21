@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpfmmvb23kwwj"
-path="res://.godot/imported/fly.png-ac1e0447879ed913b424375516c964d6.ctex"
+uid="uid://bjglli7dc7cje"
+path="res://.godot/imported/Toad.png-209e9b4843a5d5f0266ca255031a000d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/fly.png"
-dest_files=["res://.godot/imported/fly.png-ac1e0447879ed913b424375516c964d6.ctex"]
+source_file="res://Sprites/Creatures/Toad.png"
+dest_files=["res://.godot/imported/Toad.png-209e9b4843a5d5f0266ca255031a000d.ctex"]
 
 [params]
 

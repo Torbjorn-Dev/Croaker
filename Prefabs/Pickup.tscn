@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctcfvnn2pw1ss"]
 
 [ext_resource type="Script" uid="uid://e2lwndv3n2f5" path="res://Scripts/Winzone.cs" id="1_ocxif"]
-[ext_resource type="Texture2D" uid="uid://cpfmmvb23kwwj" path="res://Sprites/fly.png" id="2_afux1"]
+[ext_resource type="Texture2D" uid="uid://cpfmmvb23kwwj" path="res://Sprites/Creatures/fly.png" id="2_afux1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i6jg4"]
 radius = 36.0555

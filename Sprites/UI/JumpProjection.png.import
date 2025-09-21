@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkiu75xpig3f1"
-path="res://.godot/imported/AimProjection.png-e8b13c7748b45e6f7d18f4db450036f4.ctex"
+uid="uid://dcgv3xteqerab"
+path="res://.godot/imported/JumpProjection.png-1e7fefc9ee34412858aeb108ba162238.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/AimProjection.png"
-dest_files=["res://.godot/imported/AimProjection.png-e8b13c7748b45e6f7d18f4db450036f4.ctex"]
+source_file="res://Sprites/UI/JumpProjection.png"
+dest_files=["res://.godot/imported/JumpProjection.png-1e7fefc9ee34412858aeb108ba162238.ctex"]
 
 [params]
 

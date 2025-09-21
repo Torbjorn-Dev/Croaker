@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bolo138vbisqk"]
 
 [ext_resource type="Shader" uid="uid://dcsjppb4uvsvn" path="res://Shaders/LoadingScreenTransition.gdshader" id="1_5it6q"]
-[ext_resource type="Texture2D" uid="uid://bjitj7hsegqmh" path="res://Sprites/frog waiting.png" id="2_yfjir"]
+[ext_resource type="Texture2D" uid="uid://bjitj7hsegqmh" path="res://Sprites/Creatures/Croaker/frog waiting.png" id="2_yfjir"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ldc8q"]
 shader = ExtResource("1_5it6q")

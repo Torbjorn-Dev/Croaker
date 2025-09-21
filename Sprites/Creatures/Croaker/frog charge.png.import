@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjl26eu77i8sh"
-path="res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"
+uid="uid://btp863rnmpx11"
+path="res://.godot/imported/frog charge.png-29d60d601d887102728d02ba09652e9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"]
+source_file="res://Sprites/Creatures/Croaker/frog charge.png"
+dest_files=["res://.godot/imported/frog charge.png-29d60d601d887102728d02ba09652e9c.ctex"]
 
 [params]
 

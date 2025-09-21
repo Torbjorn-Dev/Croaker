@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjglli7dc7cje"
-path="res://.godot/imported/Toad.png-95cde09c0acd6b872abe330b20c38db5.ctex"
+uid="uid://bbdue7m2epb4b"
+path="res://.godot/imported/missile.png-56a9e6afb3d818e27fcc53f2a99c50b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Toad.png"
-dest_files=["res://.godot/imported/Toad.png-95cde09c0acd6b872abe330b20c38db5.ctex"]
+source_file="res://Sprites/Projectiles/missile.png"
+dest_files=["res://.godot/imported/missile.png-56a9e6afb3d818e27fcc53f2a99c50b0.ctex"]
 
 [params]
 

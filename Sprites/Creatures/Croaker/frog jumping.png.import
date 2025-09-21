@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1r1xpt4ld6o7"
-path="res://.godot/imported/Crosshair.png-a2c6dd7c570cec81011a43a0b2be86c6.ctex"
+uid="uid://brfbtjor7cw7r"
+path="res://.godot/imported/frog jumping.png-87a81f90c424bd3192e304ac5cc31ae5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Crosshair.png"
-dest_files=["res://.godot/imported/Crosshair.png-a2c6dd7c570cec81011a43a0b2be86c6.ctex"]
+source_file="res://Sprites/Creatures/Croaker/frog jumping.png"
+dest_files=["res://.godot/imported/frog jumping.png-87a81f90c424bd3192e304ac5cc31ae5.ctex"]
 
 [params]
 

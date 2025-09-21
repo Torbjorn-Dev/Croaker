@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btp863rnmpx11"
-path="res://.godot/imported/frog charge.png-0be7fee27100ae65577b46b87581c440.ctex"
+uid="uid://cjl26eu77i8sh"
+path="res://.godot/imported/bullet.png-7556b335c8db6d5171b8e85df9ba9d7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/frog charge.png"
-dest_files=["res://.godot/imported/frog charge.png-0be7fee27100ae65577b46b87581c440.ctex"]
+source_file="res://Sprites/Projectiles/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-7556b335c8db6d5171b8e85df9ba9d7b.ctex"]
 
 [params]
 
