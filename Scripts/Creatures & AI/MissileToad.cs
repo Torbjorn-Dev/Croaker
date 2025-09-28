@@ -8,7 +8,9 @@ public partial class MissileToad : Creature
     [Export] private PackedScene _deathParticleScene;
     [Export] private Node2D _fireLocation;
     private Timer _timer;
+    private Area2D _playerArea2D;
 
+    private bool _playerInVisionCone;
     private bool _isAlert = false;
 
 
@@ -19,25 +21,40 @@ public partial class MissileToad : Creature
 
     public override void _PhysicsProcess(double delta)
     {
+        if (_playerInVisionCone && !_isAlert)
+        {
+            CheckPlayerVisible();
+        }
+
         Velocity = GetNode<PatrolAIComponent>("PatrolAI").PatrolVelocity;
         MoveAndSlide();
     }
 
     private void OnVisionEntered(Area2D PlayerArea)
     {
+        _playerArea2D = PlayerArea;
+        _playerInVisionCone = true;
+    
+    }
+
+    private void OnVisionExited(Area2D PlayerArea)
+    {
+        _playerInVisionCone = false;
+    }
+
+    private void CheckPlayerVisible()
+    {
         PhysicsDirectSpaceState2D DirectState = GetWorld2D().DirectSpaceState;
-        var RayQuery = PhysicsRayQueryParameters2D.Create(this.Position, PlayerArea.Position);
+        var RayQuery = PhysicsRayQueryParameters2D.Create(this.GlobalPosition, _playerArea2D.GlobalPosition);
         var RayCollidedObject = DirectState.IntersectRay(RayQuery);
+        Node IntersectedNode = (Node)RayCollidedObject["collider"];
 
-        //GD.Print((GodotObject)RayCollidedObject[0]);
-        GD.Print(RayCollidedObject.Keys);
-
-        _isAlert = true;
-        GD.Print(this + " was alerted!");
-        // Add in an some visual feedback for when the creature becomes alert.
-
-        // Starting the timer makes the enemy start firing missiles.
-        _timer.Start();
+        if (IntersectedNode.Name.Equals("Player"))
+        {
+            _isAlert = true;
+            GD.Print(this + " was alerted!");
+            _timer.Start();
+        }
     }
 
     public void OnTimerTimeout()
