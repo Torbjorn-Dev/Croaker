@@ -3,7 +3,6 @@ using System;
 
 public partial class MissileToad : Creature
 {
-
     [Export] private PackedScene _missileScene;
     [Export] private PackedScene _deathParticleScene;
     [Export] private Node2D _fireLocation;
