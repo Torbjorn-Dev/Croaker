@@ -47,6 +47,14 @@ shape = SubResource("RectangleShape2D_txdqs")
 
 [node name="PatrolAI" parent="." instance=ExtResource("8_54wu3")]
 
+[node name="Vision" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vision"]
+scale = Vector2(1.57863, 1.00717)
+polygon = PackedVector2Array(400, -400, 400, 75, 0, 0, 0, -75)
+
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
 [connection signal="NoHealth" from="Health" to="." method="Die"]
+[connection signal="area_entered" from="Vision" to="." method="OnVisionEntered"]
