@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b0pytmi1h822d" path="res://Scripts/Components/HealthComponent.cs" id="1_2ik5i"]
 
-[node name="Health" type="Node2D"]
+[node name="Health" type="Node2D" node_paths=PackedStringArray("_sprites")]
 script = ExtResource("1_2ik5i")
 _maxHealth = 1
+_sprites = []
 
 [node name="Invincibility Timer" type="Timer" parent="."]
-wait_time = 1.985
+wait_time = 0.5
 
 [connection signal="timeout" from="Invincibility Timer" to="." method="OnInvincibilityTimerTimeout"]
