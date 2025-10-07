@@ -5,13 +5,19 @@ using System.Text.RegularExpressions;
 
 public partial class Player : CharacterBody2D
 {
+
+	private float gravity = (float)ProjectSettings.GetSetting("physics/2d/default_gravity");
+
+
 	private float _currentSlowmotion;
 	private bool _isJumpCharging = false;
 	private bool _canMove;
 	private bool _movementStopped;
 	private bool _isProjectionFlipped = false;
 	private Timer _timer;
-	private float gravity = (float)ProjectSettings.GetSetting("physics/2d/default_gravity");
+
+	// Whether or not the player is currently hiding in a bush.
+	public bool IsStealthed = false;
 
 
 	[ExportCategory("Jump Settings")]

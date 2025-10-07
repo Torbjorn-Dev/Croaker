@@ -50,9 +50,13 @@ public partial class MissileToad : Creature
 
         if (IntersectedNode.Name.Equals("Player"))
         {
-            _isAlert = true;
-            GD.Print(this + " was alerted!");
-            _timer.Start();
+            Player player = (Player)IntersectedNode;
+            if (!player.IsStealthed)
+            {
+                _isAlert = true;
+                GD.Print(this + " was alerted!");
+                _timer.Start();
+            }
         }
     }
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfdjjhb2d6mbs"]
+
+[ext_resource type="Script" uid="uid://bjt8hiijgpwon" path="res://Scripts/StealthArea.cs" id="1_72pcl"]
+
+[node name="StealthArea" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_72pcl")
+
+[connection signal="area_entered" from="." to="." method="OnArea2DEnter"]
+[connection signal="area_exited" from="." to="." method="OnArea2DExit"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5p2nwmrcjvno"]
+
+[ext_resource type="PackedScene" uid="uid://bfdjjhb2d6mbs" path="res://Prefabs/StealthArea.tscn" id="1_8k7st"]
+[ext_resource type="Texture2D" uid="uid://cjdn43wxoh5er" path="res://icon.svg" id="2_hxa8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14wnu"]
+size = Vector2(131, 129)
+
+[node name="StealthBush" type="Node2D"]
+
+[node name="StealthArea" parent="." instance=ExtResource("1_8k7st")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StealthArea"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_14wnu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_hxa8t")
