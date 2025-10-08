@@ -11,7 +11,8 @@ public partial class Player : CharacterBody2D
 
 	private float _currentSlowmotion;
 	private bool _isJumpCharging = false;
-	private bool _canMove;
+	private bool _canMove = true;
+	private bool _isClinging = false;
 	private bool _movementStopped;
 	private bool _isProjectionFlipped = false;
 	private Timer _timer;
@@ -38,15 +39,15 @@ public partial class Player : CharacterBody2D
 	[Export] private PackedScene _bulletScene;
 	private bool _hasBullet = true;
 	private int _bullets;
-	private TextureRect _bulletTexRect1;
-	private TextureRect _bulletTexRect2;
+	private TextureRect _bulletTexRect1, _bulletTexRect2;
 
 
 	[ExportCategory("Player Sprites")]
-	private Sprite2D _chargeSprite;
-	private Sprite2D _idleSprite;
-	private Sprite2D _flippingSprite;
-	private Sprite2D _jumpingSprite;
+	private Sprite2D _chargeSprite, _idleSprite, _flippingSprite, _jumpingSprite;
+
+
+	[ExportCategory("Wall Raycasts")]
+	private RayCast2D _leftRay, _rightRay;
 
 
 	public override void _Ready()
@@ -61,6 +62,11 @@ public partial class Player : CharacterBody2D
 		_idleSprite = GetNode("Sprites").GetNode<Sprite2D>("IdleSprite");
 		_flippingSprite = GetNode("Sprites").GetNode<Sprite2D>("FlippingSprite");
 		_jumpingSprite = GetNode("Sprites").GetNode<Sprite2D>("JumpingSprite");
+		#endregion
+
+		#region wall raycasts
+		_leftRay = GetNode("WallRays").GetNode<RayCast2D>("LeftRay");
+		_rightRay = GetNode("WallRays").GetNode<RayCast2D>("RightRay");
 		#endregion
 
 		_timer = GetNode<Timer>("Timer");
@@ -95,30 +101,11 @@ public partial class Player : CharacterBody2D
 				}
 				if (Input.IsActionPressed("ChargeJump"))
 				{
-					_isJumpCharging = true;
-					ChargeSprite();
-					_jumpProjectionSprite.Visible = true;
-					_jumpProjectionSprite.Scale = new Vector2(Position.DistanceTo(GetGlobalMousePosition()) * 0.005f, Position.DistanceTo(GetGlobalMousePosition()) * 0.005f);
-
-					_jumpProjection.LookAt(GetGlobalMousePosition());
+					ChargeJump();
 				}
 				else if (Input.IsActionJustReleased("ChargeJump"))
 				{
-					JumpingSprite();
-					_canMove = true;
-					_timer.Start();
-					_jumpProjectionSprite.Visible = false;
-					var Direction = Position.DirectionTo(_jumpTarget.GlobalPosition);
-					Velocity = Direction.Normalized() * Position.DistanceTo(GetGlobalMousePosition());
-
-					if (Velocity.X > 0)
-					{
-						_jumpingSprite.Scale = new Vector2(2.3f, _jumpingSprite.Scale.Y);
-					}
-					else
-					{
-						_jumpingSprite.Scale = new Vector2(-2.3f, _jumpingSprite.Scale.Y);
-					}
+					Jump();
 				}
 			}
 			else if (!IsOnFloor())
@@ -154,17 +141,6 @@ public partial class Player : CharacterBody2D
 							Engine.TimeScale = 1;
 						}
 					}
-
-					/*if (Input.IsActionJustReleased("Aim"))
-					{
-						GD.Print("Stopped flipping!");
-						if (_isTimeSlowed)
-						{
-							Engine.TimeScale = 1;
-							_isTimeSlowed = false;
-							_aimProjectionSprite.Visible = false;
-						}
-					}*/
 					if (Input.IsActionJustPressed("Shoot"))
 					{
 						GD.Print("Shoot!");
@@ -185,17 +161,65 @@ public partial class Player : CharacterBody2D
 						_aimProjectionSprite.Visible = false;
 					}
 				}
+				else if (Input.IsActionPressed("ChargeJump"))
+				{
+					if (_leftRay.IsColliding())
+					{
+						_isClinging = true;
+						ChargeJump();
+					}
+					else if (_rightRay.IsColliding())
+					{
+						_isClinging = true;
+						ChargeJump();
+					}
+				}
+				else if (Input.IsActionJustReleased("ChargeJump") && _isClinging)
+				{
+					_isClinging = false;
+					Jump();
+				}
 			}
 		}
 	}
 
     public override void _PhysicsProcess(double delta)
     {
-		if (!GameStateManager.Instance.GetState(GameState.Paused) && !GameStateManager.Instance.GetState(GameState.LevelLost) && !GameStateManager.Instance.GetState(GameState.LevelWon))
+		if (!GameStateManager.Instance.GetState(GameState.Paused) && !GameStateManager.Instance.GetState(GameState.LevelLost) && !GameStateManager.Instance.GetState(GameState.LevelWon) && !_isClinging)
 		{
 			MoveAndSlide();
 		}
     }
+
+	private void ChargeJump()
+	{
+		_isJumpCharging = true;
+		ChargeSprite();
+		_jumpProjectionSprite.Visible = true;
+		_jumpProjectionSprite.Scale = new Vector2(Position.DistanceTo(GetGlobalMousePosition()) * 0.005f, Position.DistanceTo(GetGlobalMousePosition()) * 0.005f);
+
+		_jumpProjection.LookAt(GetGlobalMousePosition());
+	}
+
+	private void Jump()
+	{
+		JumpingSprite();
+		_canMove = true;
+		_timer.Start();
+		_jumpProjectionSprite.Visible = false;
+		var Direction = Position.DirectionTo(_jumpTarget.GlobalPosition);
+		Velocity = Direction.Normalized() * Position.DistanceTo(GetGlobalMousePosition());
+
+		if (Velocity.X > 0)
+		{
+			_jumpingSprite.Scale = new Vector2(2.3f, _jumpingSprite.Scale.Y);
+		}
+		else
+		{
+			_jumpingSprite.Scale = new Vector2(-2.3f, _jumpingSprite.Scale.Y);
+		}
+	}
+
 
 	private void Shoot()
 	{
