@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Reflection.Metadata;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 public partial class Player : CharacterBody2D
@@ -10,15 +11,20 @@ public partial class Player : CharacterBody2D
 
 
 	private float _currentSlowmotion;
-	private bool _isJumpCharging = false;
 	private bool _canMove = true;
-	private bool _isClinging = false;
 	private bool _movementStopped;
 	private bool _isProjectionFlipped = false;
 	private Timer _timer;
 
 	// Whether or not the player is currently hiding in a bush.
 	public bool IsStealthed = false;
+
+
+	[ExportCategory("Status checks")]
+	private bool _isAiming = false;
+	private bool _isJumpCharging = false;
+	private bool _isJumping = false;
+	private bool _isClinging = false;
 
 
 	[ExportCategory("Jump Settings")]
@@ -111,8 +117,10 @@ public partial class Player : CharacterBody2D
 			else if (!IsOnFloor())
 			{
 				Velocity = new Vector2(Velocity.X, Velocity.Y + gravity * (float)delta);
+				HandleJumpSpriteRotation();
 				if (Input.IsActionPressed("Aim"))
 				{
+					_isAiming = true;
 					if (_bullets > 0)
 					{
 						if (Engine.TimeScale == 1)
@@ -154,7 +162,8 @@ public partial class Player : CharacterBody2D
 				}
 				else if (Input.IsActionJustReleased("Aim"))
 				{
-					GD.Print("Stopped flipping!");
+					_isAiming = false;
+					JumpingSprite();
 					if (Engine.TimeScale < 1)
 					{
 						Engine.TimeScale = 1;
@@ -183,13 +192,13 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
 		if (!GameStateManager.Instance.GetState(GameState.Paused) && !GameStateManager.Instance.GetState(GameState.LevelLost) && !GameStateManager.Instance.GetState(GameState.LevelWon) && !_isClinging)
 		{
 			MoveAndSlide();
 		}
-    }
+	}
 
 	private void ChargeJump()
 	{
@@ -197,27 +206,18 @@ public partial class Player : CharacterBody2D
 		ChargeSprite();
 		_jumpProjectionSprite.Visible = true;
 		_jumpProjectionSprite.Scale = new Vector2(Position.DistanceTo(GetGlobalMousePosition()) * 0.005f, Position.DistanceTo(GetGlobalMousePosition()) * 0.005f);
-
 		_jumpProjection.LookAt(GetGlobalMousePosition());
 	}
 
 	private void Jump()
 	{
-		JumpingSprite();
 		_canMove = true;
+		_isJumping = true;
 		_timer.Start();
 		_jumpProjectionSprite.Visible = false;
 		var Direction = Position.DirectionTo(_jumpTarget.GlobalPosition);
 		Velocity = Direction.Normalized() * Position.DistanceTo(GetGlobalMousePosition());
-
-		if (Velocity.X > 0)
-		{
-			_jumpingSprite.Scale = new Vector2(2.3f, _jumpingSprite.Scale.Y);
-		}
-		else
-		{
-			_jumpingSprite.Scale = new Vector2(-2.3f, _jumpingSprite.Scale.Y);
-		}
+		JumpingSprite();
 	}
 
 
@@ -332,5 +332,19 @@ public partial class Player : CharacterBody2D
 		_idleSprite.Visible = false;
 		_flippingSprite.Visible = false;
 		_jumpingSprite.Visible = true;
+
+		if (Velocity.X > 0)
+		{
+			_jumpingSprite.FlipV = false;
+		}
+		else
+		{
+			_jumpingSprite.FlipV = true;
+		}
+	}
+
+	private void HandleJumpSpriteRotation()
+	{
+		_jumpingSprite.Rotation = Velocity.Angle();
 	}
 }
