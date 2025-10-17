@@ -223,7 +223,8 @@ text = "Yes, there's missiles (they're homing)"
 label_settings = SubResource("LabelSettings_r68h2")
 horizontal_alignment = 1
 
-[node name="GameCamera" parent="." instance=ExtResource("7_ehjmi")]
+[node name="GameCamera2D" parent="." instance=ExtResource("7_ehjmi")]
+position = Vector2(-253.048, 108.599)
 
 [node name="Player" parent="." instance=ExtResource("3_p4u3k")]
 position = Vector2(-621, 509)

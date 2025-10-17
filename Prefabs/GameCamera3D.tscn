@@ -4,3 +4,6 @@
 
 [node name="GameCamera3D" type="Camera3D"]
 script = ExtResource("1_vpd30")
+
+[node name="MouseTracker" type="Camera2D" parent="."]
+editor_draw_screen = false
