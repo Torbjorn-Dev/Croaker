@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cqmlprjh0f2dg" path="res://Scripts/GameCamera.cs" id="1_hsrti"]
 
-[node name="GameCamera" type="Camera2D"]
+[node name="GameCamera2D" type="Camera2D"]
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("1_hsrti")

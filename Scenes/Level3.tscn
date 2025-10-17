@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://djy03svgxlctg" path="res://Sprites/fdgdg.png" id="1_4c7cw"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_folpc"]
 [ext_resource type="PackedScene" uid="uid://dp4uvs3iisoor" path="res://Prefabs/Player.tscn" id="2_r3844"]
-[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="3_cp0jt"]
+[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera2D.tscn" id="3_cp0jt"]
 [ext_resource type="PackedScene" uid="uid://del1eqbojg4uh" path="res://Prefabs/Spikes.tscn" id="3_td2in"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="4_n475q"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="5_5vm23"]

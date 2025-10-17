@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using System.Numerics;
 
-public partial class GameCamera : Camera2D
+public partial class GameCamera3D : Camera3D
 {
     private Player _player;
 
@@ -33,5 +32,4 @@ public partial class GameCamera : Camera2D
         float DistanceMultiplier = Math.Min(25, Position.DistanceTo(_player.Position) * 0.01f);
         Position = Position.Lerp(_player.Position, 0.01f * DistanceMultiplier);
     }
-
 }
