@@ -51,6 +51,9 @@ public partial class Player : CharacterBody2D
 	[ExportCategory("Player Sprites")]
 	private Sprite2D _chargeSprite, _idleSprite, _flippingSprite, _jumpingSprite;
 
+	[ExportCategory("Audio")]
+	[Export] private AudioStreamPlayer2D _slowMotionStart;
+	[Export] private AudioStreamPlayer2D _slowMotionStop;
 
 	[ExportCategory("Wall Raycasts")]
 	private RayCast2D _leftRay, _rightRay;
@@ -99,6 +102,7 @@ public partial class Player : CharacterBody2D
 				if (Engine.TimeScale < 1)
 				{
 					Engine.TimeScale = 1;
+					_slowMotionStop.Play();
 					_aimProjectionSprite.Visible = false;
 				}
 				if (!_canMove)
@@ -126,6 +130,7 @@ public partial class Player : CharacterBody2D
 						if (Engine.TimeScale == 1)
 						{
 							Engine.TimeScale = 0.2f;
+							_slowMotionStart.Play();
 							_aimProjectionSprite.Visible = true;
 						}
 
