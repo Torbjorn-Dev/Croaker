@@ -4,7 +4,6 @@ using System.Numerics;
 
 public partial class GameCamera : Camera2D
 {
-
     private Player _player;
 
     public override void _Ready()

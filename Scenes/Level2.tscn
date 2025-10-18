@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/MissileToad.tscn" id="4_70df5"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_ejprb"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="6_au75x"]
-[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera.tscn" id="7_ehjmi"]
+[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera2D.tscn" id="7_ehjmi"]
 [ext_resource type="PackedScene" uid="uid://cxus1chu0t4lv" path="res://Prefabs/rain_1.tscn" id="8_p4u3k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cl18p"]
@@ -223,7 +223,8 @@ text = "Yes, there's missiles (they're homing)"
 label_settings = SubResource("LabelSettings_r68h2")
 horizontal_alignment = 1
 
-[node name="GameCamera" parent="." instance=ExtResource("7_ehjmi")]
+[node name="GameCamera2D" parent="." instance=ExtResource("7_ehjmi")]
+position = Vector2(-253.048, 108.599)
 
 [node name="Player" parent="." instance=ExtResource("3_p4u3k")]
 position = Vector2(-621, 509)

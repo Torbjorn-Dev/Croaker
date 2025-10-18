@@ -1,0 +1,137 @@
+[gd_scene load_steps=9 format=3 uid="uid://em6xyenfhlmv"]
+
+[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera2D.tscn" id="1_5ms4e"]
+[ext_resource type="PackedScene" uid="uid://dp4uvs3iisoor" path="res://Prefabs/Player.tscn" id="2_shgkq"]
+[ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="3_ujyaq"]
+[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="4_oy2kj"]
+[ext_resource type="Texture2D" uid="uid://cjdn43wxoh5er" path="res://icon.svg" id="5_oy2kj"]
+[ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/MissileToad.tscn" id="6_sa0i8"]
+
+[sub_resource type="Environment" id="Environment_ujyaq"]
+background_mode = 1
+background_color = Color(3.46541e-06, 0.633304, 0.633829, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sa0i8"]
+size = Vector2(128, 127)
+
+[node name="LevelTest" type="WorldEnvironment"]
+environment = SubResource("Environment_ujyaq")
+
+[node name="GameCamera2D" parent="." instance=ExtResource("1_5ms4e")]
+
+[node name="Player" parent="." instance=ExtResource("2_shgkq")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("3_ujyaq")
+next_level = "res://Scenes/level_2.tscn"
+this_level = "res://Scenes/level_1.tscn"
+
+[node name="BulletCount1" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = -1082.0
+offset_top = -626.0
+offset_right = -954.0
+offset_bottom = -498.0
+scale = Vector2(0.561716, 0.575176)
+texture = ExtResource("4_oy2kj")
+
+[node name="BulletCount2" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = -999.0
+offset_top = -626.0
+offset_right = -871.0
+offset_bottom = -498.0
+scale = Vector2(0.561716, 0.575176)
+texture = ExtResource("4_oy2kj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-4, 136)
+scale = Vector2(8.72, 1)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sa0i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("5_oy2kj")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(533, -142)
+scale = Vector2(-0.400164, 5.15936)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sa0i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+texture = ExtResource("5_oy2kj")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1321, -447)
+scale = Vector2(12.7223, 0.437417)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sa0i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+texture = ExtResource("5_oy2kj")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(1323, -1676)
+scale = Vector2(-0.579856, 14.5149)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sa0i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+texture = ExtResource("5_oy2kj")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(1750, -1674)
+scale = Vector2(-0.579856, 14.5149)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sa0i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5"]
+texture = ExtResource("5_oy2kj")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-930, -2558)
+scale = Vector2(-35.2498, 0.656743)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sa0i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D6"]
+texture = ExtResource("5_oy2kj")
+
+[node name="Missile Toad" parent="." instance=ExtResource("6_sa0i8")]
+position = Vector2(193, -2676)
+
+[node name="Missile Toad2" parent="." instance=ExtResource("6_sa0i8")]
+position = Vector2(-1696, -2676)
+
+[node name="Missile Toad3" parent="." instance=ExtResource("6_sa0i8")]
+position = Vector2(-423, -2676)
