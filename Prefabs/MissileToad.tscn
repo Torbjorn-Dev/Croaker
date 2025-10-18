@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bm40swn3mmib2"]
+[gd_scene load_steps=13 format=3 uid="uid://bm40swn3mmib2"]
 
 [ext_resource type="Script" uid="uid://wbfjkq0inre1" path="res://Scripts/Creatures & AI/MissileToad.cs" id="1_qtagl"]
 [ext_resource type="Texture2D" uid="uid://bjglli7dc7cje" path="res://Sprites/Creatures/Toad.png" id="2_ha83v"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="3_txdqs"]
 [ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="4_54wu3"]
 [ext_resource type="PackedScene" uid="uid://bpeo84eav4pyy" path="res://Prefabs/Components/PatrolAI.tscn" id="8_54wu3"]
+[ext_resource type="PackedScene" uid="uid://8jqidppyy4yi" path="res://Prefabs/AIVision.tscn" id="8_hnp0a"]
 
-[sub_resource type="Shader" id="Shader_txdqs"]
+[sub_resource type="Shader" id="Shader_x4576"]
 code = "shader_type canvas_item;
 
 uniform float hit_effect : hint_range(0,1) = 0.0;
@@ -50,7 +51,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x4576"]
 resource_local_to_scene = true
-shader = SubResource("Shader_txdqs")
+shader = SubResource("Shader_x4576")
 shader_parameter/hit_effect = 0.0
 shader_parameter/shake_intensity = 1.0
 shader_parameter/flash_speed = 50.0
@@ -97,14 +98,8 @@ shape = SubResource("RectangleShape2D_txdqs")
 
 [node name="PatrolAI" parent="." instance=ExtResource("8_54wu3")]
 
-[node name="Vision" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vision"]
-scale = Vector2(1.57863, 1.00717)
-polygon = PackedVector2Array(600, -600, 600, 75, 0, 0, 0, -75)
+[node name="Vision" parent="." instance=ExtResource("8_hnp0a")]
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
 [connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
 [connection signal="NoHealth" from="Health" to="." method="Die"]
-[connection signal="area_entered" from="Vision" to="." method="OnVisionEntered"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://8jqidppyy4yi"]
+
+[ext_resource type="Script" uid="uid://buggmsr2lw833" path="res://Scripts/Creatures & AI/AIVision.cs" id="1_l74we"]
+
+[node name="Vision" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_l74we")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.57863, 1.00717)
+polygon = PackedVector2Array(600, -600, 600, 75, 0, 0, 0, -75)
