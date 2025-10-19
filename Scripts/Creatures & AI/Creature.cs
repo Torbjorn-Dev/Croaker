@@ -7,11 +7,13 @@ public partial class Creature : CharacterBody2D
     public int CurrentHealth;
 
     public bool IsBlocking = false;
-
+    public bool IsAlert = false;
 
     public override void _Ready()
     {
         CurrentHealth = _maxHealth;
     }
+
+    public virtual void BecomeAlert(){}
 
 }

@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://bobhn1tbyth4s"]
+
+[ext_resource type="Script" uid="uid://c7cq4dv7bq2kk" path="res://Scripts/Creatures & AI/Turret.cs" id="1_xoyte"]
+[ext_resource type="PackedScene" uid="uid://bcc0q03aqeq8k" path="res://Prefabs/EnemyBullet.tscn" id="2_r36q6"]
+[ext_resource type="PackedScene" uid="uid://jj1bftsql82v" path="res://Prefabs/Effects/DeathParticles.tscn" id="3_mslsw"]
+[ext_resource type="Texture2D" uid="uid://cfh7k4oilk863" path="res://Sprites/pancake_nr.1.png" id="4_5li04"]
+[ext_resource type="Shader" uid="uid://b0ymcc6amidcq" path="res://Shaders/HitFlash.gdshader" id="4_r36q6"]
+[ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="5_38ytd"]
+[ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="6_km4w5"]
+[ext_resource type="PackedScene" uid="uid://8jqidppyy4yi" path="res://Prefabs/AIVision.tscn" id="8_l86b0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mslsw"]
+resource_local_to_scene = true
+shader = ExtResource("4_r36q6")
+shader_parameter/hit_effect = 0.0
+shader_parameter/shake_intensity = 10.0
+shader_parameter/flash_speed = 30.0
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l33d0"]
+radius = 65.4905
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x0vx"]
+size = Vector2(63, 133)
+
+[node name="Turret" type="CharacterBody2D" node_paths=PackedStringArray("_fireLocation", "_visionCone")]
+script = ExtResource("1_xoyte")
+_bulletScene = ExtResource("2_r36q6")
+_deathParticleScene = ExtResource("3_mslsw")
+_fireLocation = NodePath("Vision/FireLocation")
+_visionCone = NodePath("Vision")
+_maxRotation = 1.0
+_maxHealth = 2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mslsw")
+position = Vector2(0, 1)
+scale = Vector2(0.114335, 0.11376)
+texture = ExtResource("4_5li04")
+flip_h = true
+
+[node name="FireRateTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="IdleTimer" type="Timer" parent="."]
+
+[node name="Hitbox" parent="." instance=ExtResource("5_38ytd")]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_l33d0")
+
+[node name="Health" parent="." node_paths=PackedStringArray("_sprites") instance=ExtResource("6_km4w5")]
+_maxHealth = 2
+_sprites = [NodePath("../Sprite")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 3.5)
+shape = SubResource("RectangleShape2D_1x0vx")
+
+[node name="Vision" parent="." instance=ExtResource("8_l86b0")]
+
+[node name="FireLocation" type="Node2D" parent="Vision"]
+position = Vector2(99, -30)
+
+[connection signal="timeout" from="FireRateTimer" to="." method="OnFireRateTimeout"]
+[connection signal="timeout" from="IdleTimer" to="." method="OnIdleTimerTimeout"]
+[connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
+[connection signal="NoHealth" from="Health" to="." method="Die"]

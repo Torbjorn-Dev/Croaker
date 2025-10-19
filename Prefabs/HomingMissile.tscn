@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://xlk63x7g3tjg"]
 
 [ext_resource type="Script" uid="uid://qq67gjxldrxd" path="res://Scripts/HomingMissile.cs" id="1_pbtdm"]
-[ext_resource type="PackedScene" uid="uid://guudylg768vv" path="res://Prefabs/Explosion.tscn" id="2_spps4"]
+[ext_resource type="PackedScene" uid="uid://guudylg768vv" path="res://Prefabs/Effects/Explosion.tscn" id="2_spps4"]
 [ext_resource type="Texture2D" uid="uid://bbdue7m2epb4b" path="res://Sprites/Projectiles/missile.png" id="2_twra5"]
 [ext_resource type="AudioStream" uid="uid://bcqfh4cirnlc0" path="res://Audio/Missile.wav" id="3_spps4"]
 

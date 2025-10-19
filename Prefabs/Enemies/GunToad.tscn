@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=3 uid="uid://bn2kjd7k4mbgs"]
+
+[ext_resource type="Texture2D" uid="uid://bjglli7dc7cje" path="res://Sprites/Creatures/Toad.png" id="1_n1sjf"]
+[ext_resource type="Script" uid="uid://bgx4dan7biq2n" path="res://Scripts/Creatures & AI/GunToad.cs" id="1_qjb3g"]
+[ext_resource type="PackedScene" uid="uid://bcc0q03aqeq8k" path="res://Prefabs/EnemyBullet.tscn" id="2_4ro7x"]
+[ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="2_sjdbi"]
+[ext_resource type="PackedScene" uid="uid://jj1bftsql82v" path="res://Prefabs/Effects/DeathParticles.tscn" id="3_l33d0"]
+[ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="3_qjb3g"]
+[ext_resource type="PackedScene" uid="uid://bpeo84eav4pyy" path="res://Prefabs/Components/PatrolAI.tscn" id="4_gbqpe"]
+[ext_resource type="PackedScene" uid="uid://8jqidppyy4yi" path="res://Prefabs/AIVision.tscn" id="6_gbqpe"]
+
+[sub_resource type="Shader" id="Shader_txdqs"]
+code = "shader_type canvas_item;
+
+uniform float hit_effect : hint_range(0,1) = 0.0;
+uniform float shake_intensity = 10.0;
+uniform float flash_speed = 30.0;
+uniform vec4 flash_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+float rand(vec2 co) {
+    return fract(sin(dot(co, vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void vertex() {
+    if (hit_effect > 0.0) {
+        float time = TIME * 30.0;
+        vec2 random_offset = vec2(
+            rand(vec2(time, 0.0)) * 2.0 - 1.0,
+            rand(vec2(time, 10.0)) * 2.0 - 1.0
+        );
+        VERTEX += random_offset * shake_intensity * hit_effect;
+    }
+}
+
+void fragment() {
+    vec4 original_color = texture(TEXTURE, UV);
+    
+    if (hit_effect > 0.0) {
+        float flash = sin(TIME * flash_speed) * 0.5 + 0.5;
+        flash *= original_color.a; 
+        
+        vec4 final_color = mix(original_color, flash_color, flash);
+        final_color = mix(original_color, final_color, hit_effect);
+        final_color.a = original_color.a; 
+        
+        COLOR = final_color;
+    } else {
+        COLOR = original_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ro7x"]
+resource_local_to_scene = true
+shader = SubResource("Shader_txdqs")
+shader_parameter/hit_effect = 0.0
+shader_parameter/shake_intensity = 1.0
+shader_parameter/flash_speed = 50.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l33d0"]
+radius = 65.4905
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x0vx"]
+size = Vector2(63, 133)
+
+[node name="GunToad" type="CharacterBody2D" node_paths=PackedStringArray("_fireLocation")]
+script = ExtResource("1_qjb3g")
+_bulletScene = ExtResource("2_4ro7x")
+_deathParticleScene = ExtResource("3_l33d0")
+_fireLocation = NodePath("FireLocation")
+_maxHealth = 2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4ro7x")
+position = Vector2(0, -6)
+scale = Vector2(2.6, 2.6)
+texture = ExtResource("1_n1sjf")
+flip_h = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+
+[node name="FireLocation" type="Node2D" parent="."]
+position = Vector2(99, -30)
+
+[node name="Hitbox" parent="." instance=ExtResource("2_sjdbi")]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_l33d0")
+
+[node name="Health" parent="." node_paths=PackedStringArray("_sprites") instance=ExtResource("3_qjb3g")]
+_maxHealth = 2
+_sprites = [NodePath("../Sprite")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 3.5)
+shape = SubResource("RectangleShape2D_1x0vx")
+
+[node name="PatrolAI" parent="." instance=ExtResource("4_gbqpe")]
+
+[node name="Vision" parent="." instance=ExtResource("6_gbqpe")]
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
+[connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
+[connection signal="NoHealth" from="Health" to="." method="Die"]
