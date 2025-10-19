@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dkypidfnwy2hc"]
 
 [ext_resource type="PackedScene" uid="uid://dp4uvs3iisoor" path="res://Prefabs/Player.tscn" id="1_krds6"]
-[ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/MissileToad.tscn" id="2_73hsl"]
+[ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/Enemies/MissileToad.tscn" id="2_73hsl"]
 [ext_resource type="Texture2D" uid="uid://djy03svgxlctg" path="res://Sprites/fdgdg.png" id="2_b0jd8"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_l36ip"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="4_r3kea"]

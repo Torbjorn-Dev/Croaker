@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://djy03svgxlctg" path="res://Sprites/fdgdg.png" id="1_to3se"]
 [ext_resource type="Texture2D" uid="uid://c5ceeks1js444" path="res://Sprites/Tilesheet.png" id="2_213sf"]
 [ext_resource type="PackedScene" uid="uid://dp4uvs3iisoor" path="res://Prefabs/Player.tscn" id="3_rbgxu"]
-[ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/MissileToad.tscn" id="4_4kscp"]
+[ext_resource type="PackedScene" uid="uid://bm40swn3mmib2" path="res://Prefabs/Enemies/MissileToad.tscn" id="4_4kscp"]
 [ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera2D.tscn" id="4_213sf"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="5_xnl3v"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="6_2xldr"]

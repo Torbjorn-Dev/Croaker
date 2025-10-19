@@ -3,13 +3,11 @@ using System;
 
 public partial class GunToad : Creature
 {
-    [Export] private PackedScene _missileScene;
+    [Export] private PackedScene _bulletScene;
     [Export] private PackedScene _deathParticleScene;
     [Export] private Node2D _fireLocation;
+    private Node2D _target;
     private Timer _timer;
-    private Area2D _playerArea2D;
-
-    private bool _playerInVisionCone;
 
 
     public override void _Ready()
@@ -31,15 +29,24 @@ public partial class GunToad : Creature
 
     public void OnTimerTimeout()
     {
-        FireMissile();
+        FireBullet();
         _timer.Start();
     }
 
-    public void FireMissile()
+    public void FireBullet()
     {
-        Node2D Missile = (Node2D)ResourceLoader.Load<PackedScene>(_missileScene.ResourcePath).Instantiate();
-        AddChild(Missile);
-        Missile.Transform = _fireLocation.GlobalTransform;
+        foreach (Node node in GetTree().Root.GetChildren())
+        {
+            if (node.Name.ToString().StartsWith("Level"))
+            {
+                _target = (Node2D)node.GetNode("Player");
+                break;
+            }
+        }
+        Node2D bullet = (Node2D)ResourceLoader.Load<PackedScene>(_bulletScene.ResourcePath).Instantiate();
+        AddChild(bullet);
+        bullet.Position = Position.Lerp(_target.Position, 0.125f);
+        bullet.LookAt(_target.Position);
     }
 
     public void Die()

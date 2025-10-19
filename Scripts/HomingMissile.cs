@@ -35,6 +35,7 @@ public partial class HomingMissile : Node2D
 			if (node.Name.ToString().StartsWith("Level"))
 			{
 				_target = (Node2D)node.GetNode("Player");
+				break;
 			}
 		}
 	}
