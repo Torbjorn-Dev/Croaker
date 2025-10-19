@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://gn136j60q4y4"]
+
+[ext_resource type="Script" uid="uid://tjqffnsdtdam" path="res://Multiplayer/Scripts/Multiplayer_Bullet.cs" id="1_ckakc"]
+[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="2_4pvx4"]
+[ext_resource type="AudioStream" uid="uid://urd553mym64b" path="res://Audio/Fire.wav" id="3_qobnc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mamyx"]
+size = Vector2(24, 8)
+
+[sub_resource type="Curve" id="Curve_fgu12"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.47253), 0.0, 0.0, 0, 0, Vector2(0.724719, 0.879121), -2.30123, -2.30123, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Bullet" type="Node2D"]
+top_level = true
+script = ExtResource("1_ckakc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.57079
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_4pvx4")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_mamyx")
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qobnc")
+autoplay = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-12, 0)
+amount = 60
+direction = Vector2(-1, 0)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_fgu12")
+
+[connection signal="area_entered" from="Area2D" to="." method="onAreaEntered2D"]
+[connection signal="body_entered" from="Area2D" to="." method="OnCollisionEntered2D"]
