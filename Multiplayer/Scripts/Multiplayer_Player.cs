@@ -58,6 +58,11 @@ public partial class Multiplayer_Player : CharacterBody2D
 	[ExportCategory("Wall Raycasts")]
 	private RayCast2D _leftRay, _rightRay;
 
+    public override void _EnterTree()
+    {
+        SetMultiplayerAuthority(Name.ToString().ToInt());
+    }
+
 
 	public override void _Ready()
 	{
@@ -87,6 +92,7 @@ public partial class Multiplayer_Player : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
+		
 		if (!GameStateManager.Instance.GetState(GameState.Paused) && !GameStateManager.Instance.GetState(GameState.LevelLost) && !GameStateManager.Instance.GetState(GameState.LevelWon))
 		{
 			if (IsOnFloor())

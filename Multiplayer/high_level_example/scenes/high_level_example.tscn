@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dytxckecq42lh"]
+
+[ext_resource type="Script" uid="uid://c1g12cc12wuaa" path="res://Multiplayer/high_level_example/scripts/high_level_player_spawner.gd" id="1_xa5q7"]
+[ext_resource type="PackedScene" uid="uid://ucabdyrsn7bt" path="res://Multiplayer/high_level_example/scenes/high_level_ui.tscn" id="2_evg4q"]
+[ext_resource type="PackedScene" uid="uid://dlbyibmvmtdi4" path="res://Multiplayer/Prefabs/Multiplayer_Player.tscn" id="3_lhd1x"]
+[ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="4_2t4sf"]
+[ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="5_a1kkj"]
+[ext_resource type="Texture2D" uid="uid://cjdn43wxoh5er" path="res://icon.svg" id="6_a1kkj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2y4eh"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_5idk0"]
+font_size = 30
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2y4eh"]
+size = Vector2(128, 128)
+
+[node name="HighLevelExample" type="Node2D" unique_id=1248518900]
+
+[node name="HighLevelUI" parent="." unique_id=717940495 instance=ExtResource("2_evg4q")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2016194706]
+_spawnable_scenes = PackedStringArray("uid://dlbyibmvmtdi4")
+spawn_path = NodePath("..")
+script = ExtResource("1_xa5q7")
+network_player = ExtResource("3_lhd1x")
+
+[node name="UI" type="Control" parent="." unique_id=500108017]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_2t4sf")
+next_level = "res://Scenes/level_3.tscn"
+this_level = "res://Scenes/level_2.tscn"
+
+[node name="Menu" type="Control" parent="UI" unique_id=1547396317]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI/Menu" unique_id=1300910171]
+layout_mode = 0
+offset_left = -163.0
+offset_top = -88.0
+offset_right = 168.0
+offset_bottom = -19.0
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_2y4eh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackToMenu" type="Button" parent="UI/Menu" unique_id=1130554575]
+layout_mode = 0
+offset_left = -202.0
+offset_right = 216.0
+offset_bottom = 89.0
+
+[node name="Label" type="Label" parent="UI/Menu/BackToMenu" unique_id=754588545]
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 89.0
+text = "Back To Menu
+"
+label_settings = SubResource("LabelSettings_5idk0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BulletCount1" type="TextureRect" parent="UI" unique_id=1806145930]
+layout_mode = 0
+offset_left = -1082.0
+offset_top = -626.0
+offset_right = -954.0
+offset_bottom = -498.0
+scale = Vector2(0.561716, 0.575176)
+texture = ExtResource("5_a1kkj")
+
+[node name="BulletCount2" type="TextureRect" parent="UI" unique_id=324225537]
+layout_mode = 0
+offset_left = -999.0
+offset_top = -626.0
+offset_right = -871.0
+offset_bottom = -498.0
+scale = Vector2(0.561716, 0.575176)
+texture = ExtResource("5_a1kkj")
+
+[node name="Terrain" type="Node" parent="." unique_id=906081472]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Terrain" unique_id=1624262930]
+position = Vector2(-4.9999995, 599)
+scale = Vector2(13.888769, 0.52488494)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/StaticBody2D" unique_id=954302213]
+shape = SubResource("RectangleShape2D_2y4eh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Terrain/StaticBody2D" unique_id=1981464090]
+texture = ExtResource("6_a1kkj")
+
+[connection signal="button_down" from="UI/Menu/BackToMenu" to="UI" method="_on_back_to_menu_button_down"]

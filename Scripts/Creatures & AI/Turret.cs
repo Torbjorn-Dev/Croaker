@@ -23,15 +23,25 @@ public partial class Turret : Creature
     {
         _fireRateTimer = GetNode<Timer>("FireRateTimer");
         _idleTimer = GetNode<Timer>("IdleTimer");
+
+        GetPlayer();
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        RotateTurretIdle();
+        if (IsAlert)
+        {
+            RotateTowardsPlayer();
+        }
+        else
+        {
+            RotateTurretIdle();
+        }
     }
 
     private void RotateTurretIdle()
     {
+        GD.Print(_target.GetAngleTo(_visionCone.Position));
         if (_isIdling == false)
         {
             _visionCone.Rotate(_rotationSpeed * (float)GetPhysicsProcessDeltaTime());
@@ -61,6 +71,38 @@ public partial class Turret : Creature
         }
     }
 
+    private void RotateTowardsPlayer()
+    {
+        _visionCone.Rotation = Mathf.LerpAngle(_visionCone.Rotation, _visionCone.GetAngleTo(_target.Position), 0.5f);
+
+
+
+        // _visionCone.Rotate(_rotationSpeed * (float)GetPhysicsProcessDeltaTime());
+
+        /*if (_rotationSpeed > 0)
+        {
+            //GD.Print("Rotation counterclockwise!");
+            if (_visionCone.Rotation >= _maxRotation)
+            {
+                _rotationSpeed = -_rotationSpeed;
+                GD.Print("Changed direction. Rotation speed: " + _rotationSpeed);
+                _isIdling = true;
+                _idleTimer.Start();
+            }
+        }
+        else
+        {
+            //GD.Print("Rotation clockwise!");
+            if (_visionCone.Rotation <= _minRotation)
+            {
+                _rotationSpeed = -_rotationSpeed;
+                GD.Print("Changed direction. Rotation speed: " + _rotationSpeed);
+                _isIdling = true;
+                _idleTimer.Start();
+            }
+        }*/
+    }
+
     public override void BecomeAlert()
     {
         IsAlert = true;
@@ -80,6 +122,13 @@ public partial class Turret : Creature
 
     public void FireBullet()
     {
+        Node2D bullet = (Node2D)ResourceLoader.Load<PackedScene>(_bulletScene.ResourcePath).Instantiate();
+        AddChild(bullet);
+        bullet.Transform = _fireLocation.GlobalTransform;
+    }
+
+    private void GetPlayer()
+    {
         foreach (Node node in GetTree().Root.GetChildren())
         {
             if (node.Name.ToString().StartsWith("Level"))
@@ -88,9 +137,6 @@ public partial class Turret : Creature
                 break;
             }
         }
-        Node2D bullet = (Node2D)ResourceLoader.Load<PackedScene>(_bulletScene.ResourcePath).Instantiate();
-        AddChild(bullet);
-        bullet.Transform = _fireLocation.GlobalTransform;
     }
 
     public void Die()

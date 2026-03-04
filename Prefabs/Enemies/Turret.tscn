@@ -40,7 +40,7 @@ texture = ExtResource("4_5li04")
 flip_h = true
 
 [node name="FireRateTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 2.3
 
 [node name="IdleTimer" type="Timer" parent="."]
 

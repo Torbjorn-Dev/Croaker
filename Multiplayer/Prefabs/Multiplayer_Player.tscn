@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dlbyibmvmtdi4"]
+[gd_scene format=3 uid="uid://dlbyibmvmtdi4"]
 
 [ext_resource type="Script" uid="uid://c4dogjhm7a1e1" path="res://Multiplayer/Scripts/Multiplayer_Player.cs" id="1_schcw"]
 [ext_resource type="Shader" uid="uid://b0ymcc6amidcq" path="res://Shaders/HitFlash.gdshader" id="3_tbkpx"]
@@ -63,7 +63,7 @@ properties/2/path = NodePath(".:scale")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_jumpProjection", "_jumpProjectionSprite", "_jumpTarget", "_aimProjection", "_aimProjectionSprite", "_fireLocation") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=468181862 node_paths=PackedStringArray("_jumpProjection", "_jumpProjectionSprite", "_jumpTarget", "_aimProjection", "_aimProjectionSprite", "_fireLocation") groups=["Player"]]
 script = ExtResource("1_schcw")
 _jumpProjection = NodePath("JumpProjection")
 _jumpProjectionSprite = NodePath("JumpProjection/JumpProjectionSprite")
@@ -72,29 +72,29 @@ _aimProjection = NodePath("AimProjection")
 _aimProjectionSprite = NodePath("AimProjection/AimProjectionSprite")
 _fireLocation = NodePath("AimProjection/FireLocation")
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=798935982]
 
-[node name="ChargeSprite" type="Sprite2D" parent="Sprites"]
+[node name="ChargeSprite" type="Sprite2D" parent="Sprites" unique_id=1689544983]
 visible = false
 material = SubResource("ShaderMaterial_8afax")
 position = Vector2(0, 2)
 scale = Vector2(2.3, 2.3)
 texture = ExtResource("4_uyg2n")
 
-[node name="JumpingSprite" type="Sprite2D" parent="Sprites"]
+[node name="JumpingSprite" type="Sprite2D" parent="Sprites" unique_id=824151675]
 visible = false
 material = SubResource("ShaderMaterial_t7w7j")
 position = Vector2(0, 7)
 scale = Vector2(2.3, 2)
 texture = ExtResource("5_ajuj0")
 
-[node name="IdleSprite" type="Sprite2D" parent="Sprites"]
+[node name="IdleSprite" type="Sprite2D" parent="Sprites" unique_id=329859167]
 material = SubResource("ShaderMaterial_08l6w")
 position = Vector2(10, 0)
 scale = Vector2(2.3, 2.3)
 texture = ExtResource("6_5swyx")
 
-[node name="FlippingSprite" type="Sprite2D" parent="Sprites"]
+[node name="FlippingSprite" type="Sprite2D" parent="Sprites" unique_id=1321677999]
 visible = false
 material = SubResource("ShaderMaterial_o7xy3")
 position = Vector2(-10, 0)
@@ -102,74 +102,74 @@ rotation = -0.681504
 scale = Vector2(2.3, 2.3)
 texture = ExtResource("7_boirn")
 
-[node name="Audio" type="Node2D" parent="."]
+[node name="Audio" type="Node2D" parent="." unique_id=1861646439]
 
-[node name="SlowMotionStart" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="SlowMotionStart" type="AudioStreamPlayer2D" parent="Audio" unique_id=673029733]
 stream = ExtResource("8_0td1p")
 
-[node name="SlowMotionStop" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="SlowMotionStop" type="AudioStreamPlayer2D" parent="Audio" unique_id=471616729]
 stream = ExtResource("9_142t0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=47054530]
 position = Vector2(1, 16)
 shape = SubResource("CircleShape2D_niob6")
 
-[node name="WallRays" type="Node2D" parent="."]
+[node name="WallRays" type="Node2D" parent="." unique_id=1199195011]
 
-[node name="LeftRay" type="RayCast2D" parent="WallRays"]
+[node name="LeftRay" type="RayCast2D" parent="WallRays" unique_id=741043122]
 position = Vector2(0, 15)
 target_position = Vector2(-53, 0)
 
-[node name="RightRay" type="RayCast2D" parent="WallRays"]
+[node name="RightRay" type="RayCast2D" parent="WallRays" unique_id=712918828]
 position = Vector2(0, 15)
 target_position = Vector2(53, 0)
 collision_mask = 8
 
-[node name="JumpProjection" type="Sprite2D" parent="."]
+[node name="JumpProjection" type="Sprite2D" parent="." unique_id=1479836302]
 offset = Vector2(100, 0)
 
-[node name="JumpProjectionSprite" type="Sprite2D" parent="JumpProjection"]
+[node name="JumpProjectionSprite" type="Sprite2D" parent="JumpProjection" unique_id=1152255660]
 visible = false
 position = Vector2(150, 0)
 rotation = 1.57079
 scale = Vector2(1.445, 2)
 texture = ExtResource("10_hygds")
 
-[node name="JumpTarget" type="Node2D" parent="JumpProjection"]
+[node name="JumpTarget" type="Node2D" parent="JumpProjection" unique_id=1853545270]
 position = Vector2(100, 0)
 
-[node name="AimProjection" type="Sprite2D" parent="."]
+[node name="AimProjection" type="Sprite2D" parent="." unique_id=1872344874]
 offset = Vector2(100, 0)
 
-[node name="AimProjectionSprite" type="Sprite2D" parent="AimProjection"]
+[node name="AimProjectionSprite" type="Sprite2D" parent="AimProjection" unique_id=1547789398]
 visible = false
 position = Vector2(950, 0)
 rotation = 1.57096
 scale = Vector2(1, 2.55995)
 texture = ExtResource("11_42m2x")
 
-[node name="FireLocation" type="Node2D" parent="AimProjection"]
+[node name="FireLocation" type="Node2D" parent="AimProjection" unique_id=618078380]
 visible = false
 position = Vector2(100, 0)
 
-[node name="Hitbox" parent="." instance=ExtResource("12_o3rk3")]
+[node name="Hitbox" parent="." unique_id=1915656556 instance=ExtResource("12_o3rk3")]
 collision_layer = 17
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1100082541]
 position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_l2r3c")
 
-[node name="Health" parent="." node_paths=PackedStringArray("_sprites") instance=ExtResource("13_88wqq")]
+[node name="Health" parent="." unique_id=839561860 node_paths=PackedStringArray("_sprites") instance=ExtResource("13_88wqq")]
 position = Vector2(88.0016, -13.1844)
 _sprites = [NodePath("../Sprites/ChargeSprite"), NodePath("../Sprites/JumpingSprite"), NodePath("../Sprites/IdleSprite"), NodePath("../Sprites/FlippingSprite")]
 
-[node name="Melee" parent="." instance=ExtResource("14_6xfmd")]
+[node name="Melee" parent="." unique_id=2037878985 instance=ExtResource("14_6xfmd")]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=619482617]
 wait_time = 0.25
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1542912170]
 replication_config = SubResource("SceneReplicationConfig_schcw")
 
 [connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
