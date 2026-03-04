@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dlbyibmvmtdi4"]
 
 [ext_resource type="Script" uid="uid://c4dogjhm7a1e1" path="res://Multiplayer/Scripts/Multiplayer_Player.cs" id="1_schcw"]
+[ext_resource type="PackedScene" uid="uid://gn136j60q4y4" path="res://Multiplayer/Prefabs/Multiplayer_Bullet.tscn" id="2_nfd4k"]
 [ext_resource type="Shader" uid="uid://b0ymcc6amidcq" path="res://Shaders/HitFlash.gdshader" id="3_tbkpx"]
 [ext_resource type="Texture2D" uid="uid://btp863rnmpx11" path="res://Sprites/Creatures/Croaker/frog charge.png" id="4_uyg2n"]
 [ext_resource type="Texture2D" uid="uid://brfbtjor7cw7r" path="res://Sprites/Creatures/Croaker/frog jumping.png" id="5_ajuj0"]
@@ -65,12 +66,15 @@ properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=468181862 node_paths=PackedStringArray("_jumpProjection", "_jumpProjectionSprite", "_jumpTarget", "_aimProjection", "_aimProjectionSprite", "_fireLocation") groups=["Player"]]
 script = ExtResource("1_schcw")
+_jumpVelocity = 1000.0
+_flippingSpeed = 500.0
 _jumpProjection = NodePath("JumpProjection")
 _jumpProjectionSprite = NodePath("JumpProjection/JumpProjectionSprite")
 _jumpTarget = NodePath("JumpProjection/JumpTarget")
 _aimProjection = NodePath("AimProjection")
 _aimProjectionSprite = NodePath("AimProjection/AimProjectionSprite")
 _fireLocation = NodePath("AimProjection/FireLocation")
+_bulletScene = ExtResource("2_nfd4k")
 
 [node name="Sprites" type="Node2D" parent="." unique_id=798935982]
 

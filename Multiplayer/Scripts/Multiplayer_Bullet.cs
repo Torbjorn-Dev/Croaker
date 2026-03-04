@@ -19,7 +19,7 @@ public partial class Multiplayer_Bullet : Node2D
 			HitboxComponent Hitbox = Area as HitboxComponent;
 			Hitbox.Hit(_damage);
 		}
-		GetParent<Player>().GetBullet();
+		GetParent<Multiplayer_Player>().GetBullet();
 		QueueFree();
 	}
 

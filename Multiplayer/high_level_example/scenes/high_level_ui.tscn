@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ucabdyrsn7bt"]
+[gd_scene format=3 uid="uid://ucabdyrsn7bt"]
 
-[ext_resource type="Script" uid="uid://lbdlxbf7hb8p" path="res://high_level_example/scripts/high_level_client_ui.gd" id="1_ynxo7"]
+[ext_resource type="Script" uid="uid://lbdlxbf7hb8p" path="res://Multiplayer/high_level_example/scripts/high_level_client_ui.gd" id="1_ynxo7"]
 
-[node name="HighLevelUI" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_mwhvk"]
+font_size = 38
+
+[node name="HighLevelUI" type="Control" unique_id=947226809]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,27 +14,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ynxo7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1715591802]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 387.78
+offset_bottom = 123.0
+scale = Vector2(2, 2)
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=505420165]
 layout_mode = 2
 text = "HIGH-LEVEL VERSION"
+label_settings = SubResource("LabelSettings_mwhvk")
 
-[node name="Server" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "SERVER"
-
-[node name="Client" type="Button" parent="VBoxContainer"]
+[node name="Client" type="Button" parent="VBoxContainer" unique_id=484724609]
 layout_mode = 2
 text = "CLIENT"
 
-[node name="Host" type="Button" parent="VBoxContainer"]
+[node name="Host" type="Button" parent="VBoxContainer" unique_id=231825658]
 layout_mode = 2
 text = "HOST (Server+Player)"
 
-[connection signal="pressed" from="VBoxContainer/Server" to="." method="_on_server_pressed"]
 [connection signal="pressed" from="VBoxContainer/Client" to="." method="_on_client_pressed"]
 [connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]

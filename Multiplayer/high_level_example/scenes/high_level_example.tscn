@@ -19,6 +19,10 @@ size = Vector2(128, 128)
 [node name="HighLevelExample" type="Node2D" unique_id=1248518900]
 
 [node name="HighLevelUI" parent="." unique_id=717940495 instance=ExtResource("2_evg4q")]
+offset_left = -392.0
+offset_top = -155.0
+offset_right = -392.0
+offset_bottom = -155.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2016194706]
 _spawnable_scenes = PackedStringArray("uid://dlbyibmvmtdi4")
@@ -97,5 +101,10 @@ shape = SubResource("RectangleShape2D_2y4eh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Terrain/StaticBody2D" unique_id=1981464090]
 texture = ExtResource("6_a1kkj")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1100707928]
+position = Vector2(0, -1.0000038)
+scale = Vector2(8.056403, 4.5462747)
+zoom = Vector2(0.5, 0.5)
 
 [connection signal="button_down" from="UI/Menu/BackToMenu" to="UI" method="_on_back_to_menu_button_down"]

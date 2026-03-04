@@ -51,18 +51,15 @@ public partial class Multiplayer_Player : CharacterBody2D
 	[ExportCategory("Player Sprites")]
 	private Sprite2D _chargeSprite, _idleSprite, _flippingSprite, _jumpingSprite;
 
-	[ExportCategory("Audio")]
-	[Export] private AudioStreamPlayer2D _slowMotionStart;
-	[Export] private AudioStreamPlayer2D _slowMotionStop;
 
 	[ExportCategory("Wall Raycasts")]
 	private RayCast2D _leftRay, _rightRay;
+
 
     public override void _EnterTree()
     {
         SetMultiplayerAuthority(Name.ToString().ToInt());
     }
-
 
 	public override void _Ready()
 	{
@@ -97,6 +94,7 @@ public partial class Multiplayer_Player : CharacterBody2D
 		{
 			if (IsOnFloor())
 			{
+				_aimProjectionSprite.Visible = false;
 				if (!_isJumpCharging)
 				{
 					IdleSprite();
@@ -104,12 +102,6 @@ public partial class Multiplayer_Player : CharacterBody2D
 				if (_bullets < 2)
 				{
 					RestoreBullets();
-				}
-				if (Engine.TimeScale < 1)
-				{
-					Engine.TimeScale = 1;
-					_slowMotionStop.Play();
-					_aimProjectionSprite.Visible = false;
 				}
 				if (!_canMove)
 				{
@@ -133,12 +125,7 @@ public partial class Multiplayer_Player : CharacterBody2D
 					_isAiming = true;
 					if (_bullets > 0)
 					{
-						if (Engine.TimeScale == 1)
-						{
-							Engine.TimeScale = 0.2f;
-							_slowMotionStart.Play();
-							_aimProjectionSprite.Visible = true;
-						}
+						_aimProjectionSprite.Visible = true;
 
 						if (Velocity.X > 0)
 						{
@@ -155,31 +142,18 @@ public partial class Multiplayer_Player : CharacterBody2D
 					else
 					{
 						_aimProjectionSprite.Visible = false;
-						if (Engine.TimeScale < 1)
-						{
-							Engine.TimeScale = 1;
-						}
 					}
 					if (Input.IsActionJustPressed("Shoot"))
 					{
-						GD.Print("Shoot!");
-						if (Engine.TimeScale < 1)
-						{
-							Shoot();
-							Engine.TimeScale = 1;
-							_aimProjectionSprite.Visible = false;
-						}
+						Rpc(MethodName.Shoot);
+						_aimProjectionSprite.Visible = false;
 					}
 				}
 				else if (Input.IsActionJustReleased("Aim"))
 				{
 					_isAiming = false;
 					JumpingSprite();
-					if (Engine.TimeScale < 1)
-					{
-						Engine.TimeScale = 1;
-						_aimProjectionSprite.Visible = false;
-					}
+					_aimProjectionSprite.Visible = false;
 				}
 				else if (Input.IsActionPressed("ChargeJump"))
 				{
@@ -231,7 +205,7 @@ public partial class Multiplayer_Player : CharacterBody2D
 		JumpingSprite();
 	}
 
-
+	[Rpc(CallLocal = true)]
 	private void Shoot()
 	{
 		if (_hasBullet)
@@ -240,6 +214,7 @@ public partial class Multiplayer_Player : CharacterBody2D
 			Node2D Bullet = (Node2D)ResourceLoader.Load<PackedScene>(_bulletScene.ResourcePath).Instantiate();
 			AddChild(Bullet);
 			Bullet.Transform = _fireLocation.GlobalTransform;
+			GD.Print("Firelocation: " + _fireLocation);
 			var Direction = Position.DirectionTo(_fireLocation.GlobalPosition);
 			Velocity = Direction.Normalized() * -_jumpVelocity;
 		}
