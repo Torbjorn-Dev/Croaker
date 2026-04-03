@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cc3objf14b5mh"]
+
+[ext_resource type="Script" uid="uid://ch535f62eria0" path="res://Multiplayer/Scripts/Multiplayer_GameCamera.cs" id="1_5ovxv"]
+
+[node name="MP_GameCamera" type="Camera2D" unique_id=445470883]
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("1_5ovxv")

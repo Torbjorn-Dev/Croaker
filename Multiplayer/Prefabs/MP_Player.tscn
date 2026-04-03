@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dlbyibmvmtdi4"]
 
 [ext_resource type="Script" uid="uid://c4dogjhm7a1e1" path="res://Multiplayer/Scripts/Multiplayer_Player.cs" id="1_schcw"]
-[ext_resource type="PackedScene" uid="uid://gn136j60q4y4" path="res://Multiplayer/Prefabs/Multiplayer_Bullet.tscn" id="2_nfd4k"]
+[ext_resource type="PackedScene" uid="uid://gn136j60q4y4" path="res://Multiplayer/Prefabs/MP_Bullet.tscn" id="2_nfd4k"]
 [ext_resource type="Shader" uid="uid://b0ymcc6amidcq" path="res://Shaders/HitFlash.gdshader" id="3_tbkpx"]
 [ext_resource type="Texture2D" uid="uid://btp863rnmpx11" path="res://Sprites/Creatures/Croaker/frog charge.png" id="4_uyg2n"]
 [ext_resource type="Texture2D" uid="uid://brfbtjor7cw7r" path="res://Sprites/Creatures/Croaker/frog jumping.png" id="5_ajuj0"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c7jjnndmaq176" path="res://Prefabs/Components/Hitbox.tscn" id="12_o3rk3"]
 [ext_resource type="PackedScene" uid="uid://c4tkkyuxrbpg4" path="res://Prefabs/Components/Health.tscn" id="13_88wqq"]
 [ext_resource type="PackedScene" uid="uid://df7u1owbpelkd" path="res://Prefabs/Components/Melee.tscn" id="14_6xfmd"]
+[ext_resource type="PackedScene" uid="uid://cc3objf14b5mh" path="res://Multiplayer/Prefabs/MP_GameCamera.tscn" id="15_dl5gh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8afax"]
 resource_local_to_scene = true
@@ -175,6 +176,9 @@ wait_time = 0.25
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1542912170]
 replication_config = SubResource("SceneReplicationConfig_schcw")
+
+[node name="MP_GameCamera" parent="." unique_id=445470883 instance=ExtResource("15_dl5gh")]
+top_level = true
 
 [connection signal="DamageTaken" from="Hitbox" to="Health" method="TakeDamage"]
 [connection signal="NoHealth" from="Health" to="." method="Die"]

@@ -4,11 +4,11 @@ using System.Numerics;
 
 public partial class Multiplayer_GameCamera : Camera2D
 {
-    private Player _player;
+    private Multiplayer_Player _player;
 
     public override void _Ready()
     {
-        _player = (Player)GetTree().GetNodesInGroup("Player")[0];
+        _player = (Multiplayer_Player)GetParent();
     }
 
     public override void _PhysicsProcess(double delta)

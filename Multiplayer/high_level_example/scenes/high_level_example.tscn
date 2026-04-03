@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c1g12cc12wuaa" path="res://Multiplayer/high_level_example/scripts/high_level_player_spawner.gd" id="1_xa5q7"]
 [ext_resource type="PackedScene" uid="uid://ucabdyrsn7bt" path="res://Multiplayer/high_level_example/scenes/high_level_ui.tscn" id="2_evg4q"]
-[ext_resource type="PackedScene" uid="uid://dlbyibmvmtdi4" path="res://Multiplayer/Prefabs/Multiplayer_Player.tscn" id="3_lhd1x"]
+[ext_resource type="PackedScene" uid="uid://dlbyibmvmtdi4" path="res://Multiplayer/Prefabs/MP_Player.tscn" id="3_lhd1x"]
 [ext_resource type="Script" uid="uid://hcyl54gxe7tg" path="res://Prefabs/Deprecated/GameMenu.gd" id="4_2t4sf"]
 [ext_resource type="Texture2D" uid="uid://cjl26eu77i8sh" path="res://Sprites/Projectiles/bullet.png" id="5_a1kkj"]
 [ext_resource type="Texture2D" uid="uid://cjdn43wxoh5er" path="res://icon.svg" id="6_a1kkj"]
+[ext_resource type="PackedScene" uid="uid://bfjv6g41gpetu" path="res://Prefabs/GameCamera2D.tscn" id="7_2y4eh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2y4eh"]
 font_size = 50
@@ -18,11 +19,12 @@ size = Vector2(128, 128)
 
 [node name="HighLevelExample" type="Node2D" unique_id=1248518900]
 
-[node name="HighLevelUI" parent="." unique_id=717940495 instance=ExtResource("2_evg4q")]
+[node name="HighLevelUI" parent="." unique_id=717940495 node_paths=PackedStringArray("menu_camera") instance=ExtResource("2_evg4q")]
 offset_left = -392.0
 offset_top = -155.0
 offset_right = -392.0
 offset_bottom = -155.0
+menu_camera = NodePath("../MenuCamera")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2016194706]
 _spawnable_scenes = PackedStringArray("uid://dlbyibmvmtdi4")
@@ -102,9 +104,27 @@ shape = SubResource("RectangleShape2D_2y4eh")
 [node name="Sprite2D" type="Sprite2D" parent="Terrain/StaticBody2D" unique_id=1981464090]
 texture = ExtResource("6_a1kkj")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1100707928]
-position = Vector2(0, -1.0000038)
-scale = Vector2(8.056403, 4.5462747)
-zoom = Vector2(0.5, 0.5)
+[node name="StaticBody2D" type="StaticBody2D" parent="Terrain/StaticBody2D" unique_id=1981650306]
+position = Vector2(-122.11305, 9.179115e-06)
+scale = Vector2(1.1306783, 0.9683609)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/StaticBody2D/StaticBody2D" unique_id=709181724]
+shape = SubResource("RectangleShape2D_2y4eh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Terrain/StaticBody2D/StaticBody2D" unique_id=265670557]
+texture = ExtResource("6_a1kkj")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Terrain/StaticBody2D" unique_id=192767028]
+position = Vector2(130.17712, 9.298325e-06)
+scale = Vector2(1.1306783, 0.9683609)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/StaticBody2D/StaticBody2D2" unique_id=26443420]
+shape = SubResource("RectangleShape2D_2y4eh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Terrain/StaticBody2D/StaticBody2D2" unique_id=532066637]
+texture = ExtResource("6_a1kkj")
+
+[node name="MenuCamera" parent="." unique_id=2107630522 instance=ExtResource("7_2y4eh")]
+script = null
 
 [connection signal="button_down" from="UI/Menu/BackToMenu" to="UI" method="_on_back_to_menu_button_down"]
